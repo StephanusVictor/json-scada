@@ -127,7 +127,7 @@ function Animate(elem, animtype, params) {
     }
   }
 
-  setTimeout(function() {
+  setTimeout(function () {
     elem.appendChild(animation);
     if (typeof animation.beginElement != "undefined") {
       animation.endElement();
@@ -174,11 +174,11 @@ function ShowHideTranslate(idorobj, xd, yd) {
       null,
       "transform",
       obj.inittransform +
-        " translate(" +
-        parseFloat(xd) +
-        " " +
-        parseFloat(yd) +
-        ")"
+      " translate(" +
+      parseFloat(xd) +
+      " " +
+      parseFloat(yd) +
+      ")"
     );
 }
 
@@ -247,21 +247,21 @@ var WebSAGE = {
   lstpnt: "",
 
   InkSage: [],
-  SetIniExtended: function() {},
-  SetExeExtended: function() {},
+  SetIniExtended: function () { },
+  SetExeExtended: function () { },
 
   // Return value from tag or number
-  getValue: function(tagornumber) {
+  getValue: function (tagornumber) {
     return V[tagornumber] || V[NPTS[tagornumber]] || 0;
   },
 
   // Return the string value from tag or number
-  getStringValue: function(tagornumber) {
+  getStringValue: function (tagornumber) {
     return S[tagornumber] || S[NPTS[tagornumber]] || "";
   },
 
   // Return flags from tag or number
-  getFlags: function(tagornumber) {
+  getFlags: function (tagornumber) {
     var f = F[tagornumber] || F[NPTS[tagornumber]];
     if (isNaN(f))
       return 0xa0 | (WebSAGE.getValue(tagornumber) == 0 ? 0x02 : 0x01);
@@ -269,41 +269,41 @@ var WebSAGE = {
   },
 
   // Return inferior limit from tag or number
-  getInfLim: function(tagornumber) {
+  getInfLim: function (tagornumber) {
     return LIMINFS[tagornumber] || LIMINFS[NPTS[tagornumber]] || 0;
   },
 
   // Return superior limit from tag or number
-  getSupLim: function(tagornumber) {
+  getSupLim: function (tagornumber) {
     return LIMSUPS[tagornumber] || LIMSUPS[NPTS[tagornumber]] || 0;
   },
 
   // Return substation from tag or number
-  getSubstation: function(tagornumber) {
+  getSubstation: function (tagornumber) {
     return SUBS[tagornumber] || SUBS[NPTS[tagornumber]] || "";
   },
 
   // Return bay from tag or number
-  getBay: function(tagornumber) {
+  getBay: function (tagornumber) {
     return BAYS[tagornumber] || BAYS[NPTS[tagornumber]] || "";
   },
 
   // Return description from tag or number
-  getDescription: function(tagornumber) {
+  getDescription: function (tagornumber) {
     return DCRS[tagornumber] || DCRS[NPTS[tagornumber]] || "";
   },
 
   // Return alarm time from tag or number
-  getTime: function(tagornumber) {
+  getTime: function (tagornumber) {
     return T[tagornumber] || T[NPTS[tagornumber]] || "";
   },
 
   // Return annotation
-  getAnnotation: function(tagornumber) {
+  getAnnotation: function (tagornumber) {
     return ANOTS[tagornumber] || ANOTS[NPTS[tagornumber]] || "";
   },
-  
-  init_svg: function(filename) {
+
+  init_svg: function (filename) {
     if (filename == "") {
       WebSAGE.init();
       document.getElementById("loader").style.display = "none";
@@ -312,7 +312,7 @@ var WebSAGE = {
 
     try {
       fetchTimeout(filename, 3000)
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
         .then(response => response.text())
@@ -358,7 +358,7 @@ var WebSAGE = {
             $("#NOME_TELA").css("display", "");
           }
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
     } catch (E) {
@@ -367,7 +367,7 @@ var WebSAGE = {
   },
 
   // Process the list of screens
-  lista_telas: function(filename, indscr) {
+  lista_telas: function (filename, indscr) {
     var i, t, elOptNew, elSel, titu, pos, nohs, textolink, tmp, idtela;
 
     WebSAGE.g_seltela = document.getElementById("SELTELA");
@@ -455,8 +455,8 @@ var WebSAGE = {
                   null,
                   "onclick",
                   "window.WebSAGE.g_seltela.selectedIndex=" +
-                    t +
-                    "; window.document.fmTELA.submit();"
+                  t +
+                  "; window.document.fmTELA.submit();"
                 );
               if (nohs.item(i).style != null) {
                 nohs.item(i).style.cursor = "pointer";
@@ -495,14 +495,14 @@ var WebSAGE = {
                 WebSAGE.g_seltela.options[t].value == idtela ||
                 WebSAGE.g_seltela.options[t].value == "../svg/" + idtela ||
                 WebSAGE.g_seltela.options[t].value ==
-                  "../svg/" + idtela + ".svg"
+                "../svg/" + idtela + ".svg"
               ) {
                 nohs[i].setAttributeNS(
                   null,
                   "onclick",
                   "window.WebSAGE.g_seltela.selectedIndex=" +
-                    t +
-                    "; window.document.fmTELA.submit();"
+                  t +
+                  "; window.document.fmTELA.submit();"
                 );
                 if (nohs[i].style != null) {
                   nohs[i].style.cursor = "pointer";
@@ -520,11 +520,11 @@ var WebSAGE = {
     return "";
   },
 
-  tooltipRelac: function(item, pnt) {
+  tooltipRelac: function (item, pnt) {
     if (pnt == 0 || pnt == 99999 || pnt == 99989 || item.hasTooltip) return;
 
     // dá um tempo para receber as descrições, etc. do ponto
-    setTimeout(function() {
+    setTimeout(function () {
       if (item.hasTooltip || item.parentNode.hasTooltip) return;
 
       var p = pnt;
@@ -542,7 +542,7 @@ var WebSAGE = {
   },
 
   // cria atalhos para as telas com base na letra entre { } no texto da tela
-  atalhosTela: function() {
+  atalhosTela: function () {
     var i, pos;
 
     for (i = 0; i < WebSAGE.g_seltela.length; i++) {
@@ -550,14 +550,14 @@ var WebSAGE = {
       if (pos != -1) {
         shortcut.add(
           "",
-          function(e) {
+          function (e) {
             // procura a tela com o keycode do evento e abre
             for (var i = 0; i < WebSAGE.g_seltela.length; i++) {
               var pos = WebSAGE.g_seltela.options[i].text.indexOf("{");
               if (
                 pos != -1 &&
                 WebSAGE.g_seltela.options[i].text.charCodeAt(pos + 1) ==
-                  e.keyCode
+                e.keyCode
               ) {
                 WebSAGE.g_seltela.selectedIndex = i;
                 document.fmTELA.submit();
@@ -576,13 +576,13 @@ var WebSAGE = {
   },
 
   // função auxiliar para escrever dados na janela de comando pelo id do objeto
-  writeElemByIdWnd: function(win, id, txt) {
+  writeElemByIdWnd: function (win, id, txt) {
     if ("$" in win)
       win.$("#" + id).text(txt);
   },
 
   // add point to the list of points to be requested from the server, removing special codes like !ALM !TMP
-  acrescentaPontoLista: function(tag) {
+  acrescentaPontoLista: function (tag) {
     tag = tag.trim();
 
     if (tag.indexOf("#") === 0 || tag.indexOf("%") === 0 || tag == "") return 0;
@@ -637,7 +637,7 @@ else
   },
 
   // busca dados do servidor e prepara chamada temporizada de showValsCmd para
-  janelaInfo: function(nponto) {
+  janelaInfo: function (nponto) {
     // faz um bloqueio de 1,5s
     if (WebSAGE.g_travaInfo) {
       return;
@@ -681,32 +681,32 @@ else
   },
 
   // busca dado do ponto tempo real
-  showValsInfo0: function() {
+  showValsInfo0: function () {
 
     var arrpnt = [WebSAGE.g_nponto_sup];
-    WebSAGE.getRealtimeData( arrpnt, true,
-          prop => { 
-          NPTO = WebSAGE.g_nponto_sup; 
-          VAL_STR = S[WebSAGE.g_nponto_sup];
-          ESTACAO = SUBS[WebSAGE.g_nponto_sup];
-          ST_ON = STONS[WebSAGE.g_nponto_sup];
-          ST_OFF = STOFS[WebSAGE.g_nponto_sup];
-          UNIDADE = prop.unit;
-          DESC = BAYS[WebSAGE.g_nponto_sup] + "-" + DCRS[WebSAGE.g_nponto_sup];
-          MODULO = BAYS[WebSAGE.g_nponto_sup];
-          LIMS = LIMSUPS[WebSAGE.g_nponto_sup];
-          LIMI = LIMINFS[WebSAGE.g_nponto_sup];
-          HISTER = prop.hysteresis;
-          ALRIN = prop.alarmDisabled;
-          CNPTO = prop.commandOfSupervised;
-          ID = TAGS[WebSAGE.g_nponto_sup];
-          setTimeout(WebSAGE.showValsInfo1, 50);
-          }
-        );  
+    WebSAGE.getRealtimeData(arrpnt, true,
+      prop => {
+        NPTO = WebSAGE.g_nponto_sup;
+        VAL_STR = S[WebSAGE.g_nponto_sup];
+        ESTACAO = SUBS[WebSAGE.g_nponto_sup];
+        ST_ON = STONS[WebSAGE.g_nponto_sup];
+        ST_OFF = STOFS[WebSAGE.g_nponto_sup];
+        UNIDADE = prop.unit;
+        DESC = BAYS[WebSAGE.g_nponto_sup] + "-" + DCRS[WebSAGE.g_nponto_sup];
+        MODULO = BAYS[WebSAGE.g_nponto_sup];
+        LIMS = LIMSUPS[WebSAGE.g_nponto_sup];
+        LIMI = LIMINFS[WebSAGE.g_nponto_sup];
+        HISTER = prop.hysteresis;
+        ALRIN = prop.alarmDisabled;
+        CNPTO = prop.commandOfSupervised;
+        ID = TAGS[WebSAGE.g_nponto_sup];
+        setTimeout(WebSAGE.showValsInfo1, 50);
+      }
+    );
   },
 
   // Abre uma janela popup com dados sobre o ponto
-  showValsInfo1: function() {
+  showValsInfo1: function () {
 
     // esconde o destaque anterior, imediatamente
     WebSAGE.escondeDestaqPonto(WebSAGE.g_destaqList[WebSAGE.g_indSelPonto]);
@@ -726,7 +726,7 @@ else
   },
 
   // Mostra os dados sobre o ponto em janela popup
-  showValsInfo2: function() {
+  showValsInfo2: function () {
     try {
       // test for dialog window opened
       if (
@@ -736,8 +736,8 @@ else
         typeof WebSAGE.g_win_cmd.window.closed === "undefined" ||
         WebSAGE.g_win_cmd.window.closed ||
         !WebSAGE.g_win_cmd.document.getElementById("TABULAR")
-       ) {
-         return; // give up
+      ) {
+        return; // give up
       }
 
       // janela carregada
@@ -752,39 +752,39 @@ else
       WebSAGE.writeElemByIdWnd(
         WebSAGE.g_win_cmd,
         "ESTADO_SUP",
-        WebSAGE.getValue(NPTO)==0?ST_ON:ST_OFF
+        WebSAGE.getValue(NPTO) == 0 ? ST_ON : ST_OFF
       );
 
       var SQ = "";
       var Q = WebSAGE.getFlags(NPTO);
-/*
-      if ((Q & 0x03) == 0x00) {
-        WebSAGE.writeElemByIdWnd(
-          WebSAGE.g_win_cmd,
-          "ESTADO_SUP",
-          Msg.QDPIntermed + " (" + Msg.EstadoAtual + ")"
-        );
-      } else if ((Q & 0x03) == 0x03) {
-        WebSAGE.writeElemByIdWnd(
-          WebSAGE.g_win_cmd,
-          "ESTADO_SUP",
-          Msg.QDPInvalido + " (" + Msg.EstadoAtual + ")"
-        );
-      } else if (V[NPTO] & (0x01 != 0)) {
-        WebSAGE.writeElemByIdWnd(
-          WebSAGE.g_win_cmd,
-          "ESTADO_SUP",
-          ST_OFF + " (" + Msg.EstadoAtual + ")"
-        );
-      } // não zero é off
-      else {
-        WebSAGE.writeElemByIdWnd(
-          WebSAGE.g_win_cmd,
-          "ESTADO_SUP",
-          ST_ON + " (" + Msg.EstadoAtual + ")"
-        );
-      } // zero é on
-*/
+      /*
+            if ((Q & 0x03) == 0x00) {
+              WebSAGE.writeElemByIdWnd(
+                WebSAGE.g_win_cmd,
+                "ESTADO_SUP",
+                Msg.QDPIntermed + " (" + Msg.EstadoAtual + ")"
+              );
+            } else if ((Q & 0x03) == 0x03) {
+              WebSAGE.writeElemByIdWnd(
+                WebSAGE.g_win_cmd,
+                "ESTADO_SUP",
+                Msg.QDPInvalido + " (" + Msg.EstadoAtual + ")"
+              );
+            } else if (V[NPTO] & (0x01 != 0)) {
+              WebSAGE.writeElemByIdWnd(
+                WebSAGE.g_win_cmd,
+                "ESTADO_SUP",
+                ST_OFF + " (" + Msg.EstadoAtual + ")"
+              );
+            } // não zero é off
+            else {
+              WebSAGE.writeElemByIdWnd(
+                WebSAGE.g_win_cmd,
+                "ESTADO_SUP",
+                ST_ON + " (" + Msg.EstadoAtual + ")"
+              );
+            } // zero é on
+      */
 
       if (Q & 0x80) {
         SQ += Msg.QFalhado + " ";
@@ -824,9 +824,9 @@ else
       );
 
       if (WebSAGE.g_win_1stdraw) {
-        
+
         // on closing info window, cancel point and hide object highlight
-        WebSAGE.g_win_cmd.addEventListener("unload", function() { 
+        WebSAGE.g_win_cmd.addEventListener("unload", function () {
           WebSAGE.escondeDestaqPonto(NPTO);
           NPTO = 0;
         })
@@ -903,7 +903,7 @@ else
             Core.addEventListener(
               WebSAGE.g_win_cmd.document.getElementById("CBALTVALOR"),
               "click",
-              function() {
+              function () {
                 WebSAGE.g_win_cmd.document.getElementById(
                   "CBALTVALOR"
                 ).style.display = "none";
@@ -954,7 +954,7 @@ else
             Core.addEventListener(
               WebSAGE.g_win_cmd.document.getElementById("CBALTVALOR"),
               "click",
-              function() {
+              function () {
                 WebSAGE.g_win_cmd.document.getElementById(
                   "CBALTVALOR"
                 ).style.display = "none";
@@ -978,7 +978,7 @@ else
             Core.addEventListener(
               WebSAGE.g_win_cmd.document.getElementById("rbNovoValorOff"),
               "click",
-              WebSAGE.writeProperties              
+              WebSAGE.writeProperties
             );
           }
         }
@@ -990,7 +990,7 @@ else
           Core.addEventListener(
             WebSAGE.g_win_cmd.document.getElementById("COMANDAR"),
             "click",
-            function(){WebSAGE.g_win_cmd.close();WebSAGE.prejanelaComando();}
+            function () { WebSAGE.g_win_cmd.close(); WebSAGE.prejanelaComando(); }
           );
         }
 
@@ -1059,7 +1059,7 @@ else
         WebSAGE.g_win_cmd.document.getElementById('COMANDAR').disabled = true;
       if (!userHasRight('enterAnnotations'))
         WebSAGE.g_win_cmd.document.getElementById('ANOTACAO').disabled = true;
-      if ( (F[NPTO] & 0x0c) == 0x0c && !userHasRight('enterManuals'))
+      if ((F[NPTO] & 0x0c) == 0x0c && !userHasRight('enterManuals'))
         WebSAGE.g_win_cmd.document.getElementById('CBALTVALOR').disabled = true;
       if (!userHasRight('substituteValues'))
         WebSAGE.g_win_cmd.document.getElementById('CBALTVALOR').disabled = true;
@@ -1080,8 +1080,8 @@ else
     }
   },
 
-  prejanelaComando: function() {
-    clearTimeout(WebSAGE.g_timerID);    
+  prejanelaComando: function () {
+    clearTimeout(WebSAGE.g_timerID);
 
     if (WebSAGE.g_win_cmd.window.closed)
       WebSAGE.janelaComando(CNPTO);
@@ -1090,26 +1090,26 @@ else
   },
 
   // busca dados do servidor e prepara chamada temporizada de showValsCmd para
-  janelaComando: function(cmdPointKey) {
+  janelaComando: function (cmdPointKey) {
     NPTO = 0;
     CNPTO = 0;
     var arrpnt = [cmdPointKey];
-    WebSAGE.getRealtimeData( arrpnt, true,
-          prop => { 
-          CNPTO = cmdPointKey; 
-          ESTACAO = prop.group1;
-          NPTO = prop.supervisedOfCommand;
-          CST_ON = prop.stateTextTrue;
-          CST_OFF = prop.stateTextFalse;
-          CDESC = prop.description;
-          CID = TAGS[cmdPointKey];
-          setTimeout(WebSAGE.showValsCmd1, 100);
-          }
-        );  
+    WebSAGE.getRealtimeData(arrpnt, true,
+      prop => {
+        CNPTO = cmdPointKey;
+        ESTACAO = prop.group1;
+        NPTO = prop.supervisedOfCommand;
+        CST_ON = prop.stateTextTrue;
+        CST_OFF = prop.stateTextFalse;
+        CDESC = prop.description;
+        CID = TAGS[cmdPointKey];
+        setTimeout(WebSAGE.showValsCmd1, 100);
+      }
+    );
   },
 
   // Mostra dados sobre o comando na respectiva janela
-  showValsCmd1: function() {
+  showValsCmd1: function () {
 
     if (WebSAGE.g_win_cmd.window != undefined && WebSAGE.g_win_cmd) {
       // fecha janela info
@@ -1124,8 +1124,8 @@ else
 
     // open new command dialog, wait .5s, will show data in the showValsCmd2 function
     setTimeout(
-      function(){
-        WebSAGE.g_win_cmd=window.open('dlgcomando.html','wscomando','dependent=yes,height=450,width=400,toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,modal=yes');
+      function () {
+        WebSAGE.g_win_cmd = window.open('dlgcomando.html', 'wscomando', 'dependent=yes,height=450,width=400,toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,modal=yes');
       },
       500
     );
@@ -1134,7 +1134,7 @@ else
   },
 
   // Show command information in the command dialog
-  showValsCmd2: function() {
+  showValsCmd2: function () {
 
     var se;
     if (WebSAGE.getFlags(NPTO) & 0x2000) {
@@ -1143,10 +1143,10 @@ else
     }
 
     // on closing ingo window, cancel point and hide object highlight
-    WebSAGE.g_win_cmd.addEventListener("unload", function() { 
+    WebSAGE.g_win_cmd.addEventListener("unload", function () {
       WebSAGE.escondeDestaqPonto(NPTO);
       NPTO = 0;
-      CNPTO= 0;
+      CNPTO = 0;
     });
 
     WebSAGE.mostraDestaqPonto(NPTO);
@@ -1181,9 +1181,9 @@ else
         // assume que deve a intenção é comandar ON, portanto sombreia a opção OFF
         if (
           CST_OFF.toUpperCase().substring(0, 2) ===
-            ST_OFF.toUpperCase().substring(0, 2) &&
+          ST_OFF.toUpperCase().substring(0, 2) &&
           CST_ON.toUpperCase().substring(0, 2) !==
-            ST_OFF.toUpperCase().substring(0, 2)
+          ST_OFF.toUpperCase().substring(0, 2)
         ) {
           WebSAGE.g_win_cmd.document.getElementById("CMD_OFF").style.color = "darkgray";
         }
@@ -1197,9 +1197,9 @@ else
         // assume que deve a intenção é comandar OFF, portanto sombreia a opção ON
         if (
           CST_ON.toUpperCase().substring(0, 2) ===
-            ST_ON.toUpperCase().substring(0, 2) &&
+          ST_ON.toUpperCase().substring(0, 2) &&
           CST_OFF.toUpperCase().substring(0, 2) !==
-            ST_ON.toUpperCase().substring(0, 2)
+          ST_ON.toUpperCase().substring(0, 2)
         ) {
           WebSAGE.g_win_cmd.document.getElementById("CMD_ON").style.color = "darkgray";
         }
@@ -1241,14 +1241,14 @@ else
     }
   },
 
-  directCommandExec: function(point, value) {
-    if  (typeof value !== "number"){
-    if (value === "ON" || value === "on" || value === true || value === "TRUE" || value == "true" ) value = 1;
-    else if (value === "OFF" || value === "off" || value === false || value === "FALSE" || value == "false" ) value = 0;
-    else {
-      console.log("Invalid command value!");
-      return;
-      } 
+  directCommandExec: function (point, value) {
+    if (typeof value !== "number") {
+      if (value === "ON" || value === "on" || value === true || value === "TRUE" || value == "true") value = 1;
+      else if (value === "OFF" || value === "off" || value === false || value === "FALSE" || value == "false") value = 0;
+      else {
+        console.log("Invalid command value!");
+        return;
+      }
     }
 
     // use OPC web hmi protocol https://prototyping.opcfoundation.org/
@@ -1296,25 +1296,25 @@ else
       })
       .then(response => response.json())
       .then(data => {
-        if ( (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results) ||
-             (data.ServiceId !== OpcServiceCode.WriteResponse || data.Body.ResponseHeader.RequestHandle !== RequestHandle) ||
-             (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good)) {
-          CNPTO = 0;          
+        if ((!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results) ||
+          (data.ServiceId !== OpcServiceCode.WriteResponse || data.Body.ResponseHeader.RequestHandle !== RequestHandle) ||
+          (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good)) {
+          CNPTO = 0;
           if (ackCmdElem)
             ackCmdElem.textContent = "Error!";
           return;
         }
-        if ( data.Body.Results[0] !== OpcStatusCodes.Good ){
+        if (data.Body.Results[0] !== OpcStatusCodes.Good) {
           CNPTO = 0;
           if (ackCmdElem)
             ackCmdElem.textContent = "Error!";
         }
-    
+
         // success
         if (ackCmdElem)
           ackCmdElem.textContent = " ... ";
         CHANDLE = data.Body._CommandHandles[0];
-    
+
         // Command log in browser's localStorage
         if (storageAvailable("localStorage")) {
           var lastlogcnt = 0;
@@ -1332,16 +1332,16 @@ else
         if (ackCmdElem)
           ackCmdElem.textContent = "Error!";
       });
-    },
+  },
 
-  executeCommand: function(cmd_val) {
+  executeCommand: function (cmd_val) {
     WebSAGE.directCommandExec(CNPTO, cmd_val);
   },
 
-  getCommandAckStatus: function() {
+  getCommandAckStatus: function () {
     // track command acknowledgment from server/protocol, use CHANDLE to verify results
 
-    if ( CNPTO == 0 ) // command cancelled
+    if (CNPTO == 0) // command cancelled
       return;
 
     // use OPC web hmi protocol https://prototyping.opcfoundation.org/
@@ -1389,31 +1389,31 @@ else
 
         // response must have same request handle and be a data change notification response or service fault 
         if (data.Body.ResponseHeader.RequestHandle !== RequestHandle ||
-            (data.ServiceId !== OpcServiceCode.DataChangeNotification && data.ServiceId !== OpcServiceCode.ServiceFault ) ||
-            typeof data.Body.MonitoredItems !== "object" ){
+          (data.ServiceId !== OpcServiceCode.DataChangeNotification && data.ServiceId !== OpcServiceCode.ServiceFault) ||
+          typeof data.Body.MonitoredItems !== "object") {
           console.log("Invalid or unexpected service response!");
           return;
-          }
-        if ( data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good ){
+        }
+        if (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good) {
           console.log("Service error!");
           return;
         }
 
-      if ( data.Body.MonitoredItems[0].Value.StatusCode === OpcStatusCodes.BadWaitingForResponse )
-        WebSAGE.g_win_cmd.document.getElementById("ACK_CMD").textContent = " ??? ";
-      else   
-      if ( data.Body.MonitoredItems[0].Value.StatusCode === OpcStatusCodes.Good )
-        WebSAGE.g_win_cmd.document.getElementById("ACK_CMD").textContent = "Ok!";
-      else   
-      if ( data.Body.MonitoredItems[0].Value.StatusCode === OpcStatusCodes.Bad )
-        WebSAGE.g_win_cmd.document.getElementById("ACK_CMD").textContent = "Rejected!";   
+        if (data.Body.MonitoredItems[0].Value.StatusCode === OpcStatusCodes.BadWaitingForResponse)
+          WebSAGE.g_win_cmd.document.getElementById("ACK_CMD").textContent = " ??? ";
+        else
+          if (data.Body.MonitoredItems[0].Value.StatusCode === OpcStatusCodes.Good)
+            WebSAGE.g_win_cmd.document.getElementById("ACK_CMD").textContent = "Ok!";
+          else
+            if (data.Body.MonitoredItems[0].Value.StatusCode === OpcStatusCodes.Bad)
+              WebSAGE.g_win_cmd.document.getElementById("ACK_CMD").textContent = "Rejected!";
       })
       .catch(function (error) {
         console.log(error);
       });
   },
 
-  writeProperties: function() {
+  writeProperties: function () {
     if (!WebSAGE.g_win_cmd) {
       return;
     }
@@ -1470,20 +1470,20 @@ else
     var substituted = undefined;
     if (WebSAGE.getFlags(NPTO) & 0x20) {
       if (WebSAGE.g_win_cmd.document.getElementById("NOVOVALOR").value !== "")
-      if (!isNaN( parseFloat(WebSAGE.g_win_cmd.document.getElementById("NOVOVALOR").value) )){
-        newValue = parseFloat(WebSAGE.g_win_cmd.document.getElementById("NOVOVALOR").value);
-        substituted = true;
-      }
+        if (!isNaN(parseFloat(WebSAGE.g_win_cmd.document.getElementById("NOVOVALOR").value))) {
+          newValue = parseFloat(WebSAGE.g_win_cmd.document.getElementById("NOVOVALOR").value);
+          substituted = true;
+        }
     } else {
-      if (WebSAGE.g_win_cmd.document.getElementById("rbNovoValor").checked === true){
+      if (WebSAGE.g_win_cmd.document.getElementById("rbNovoValor").checked === true) {
         newValue = 1;
         substituted = true;
       }
       else
-      if (WebSAGE.g_win_cmd.document.getElementById("rbNovoValorOff").checked === true){
-        newValue = 0;
-        substituted = true;
-      }        
+        if (WebSAGE.g_win_cmd.document.getElementById("rbNovoValorOff").checked === true) {
+          newValue = 0;
+          substituted = true;
+        }
     }
 
     // use OPC web hmi protocol https://prototyping.opcfoundation.org/
@@ -1518,8 +1518,8 @@ else
                 hiLimit: ls,
                 hysteresis: hs,
                 notes: DNOTES[NPTO],
-                ...(typeof newValue !== "undefined" ? {newValue: newValue} : {}),
-                ...(typeof substituted !== "undefined" ? {substituted: substituted} : {})
+                ...(typeof newValue !== "undefined" ? { newValue: newValue } : {}),
+                ...(typeof substituted !== "undefined" ? { substituted: substituted } : {})
               }
             }
           }
@@ -1539,15 +1539,15 @@ else
       })
       .then(response => response.json())
       .then(data => {
-        if (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results){
+        if (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results) {
           console.log("Error writing point data! Invalid or unexpected response.");
           return;
         }
-        if (data.ServiceId !== OpcServiceCode.WriteResponse || data.Body.ResponseHeader.ServiceResult != 0){
+        if (data.ServiceId !== OpcServiceCode.WriteResponse || data.Body.ResponseHeader.ServiceResult != 0) {
           console.log("Error writing point data! Service error.");
           return;
         }
-        if (data.Body.ResponseHeader.RequestHandle !== RequestHandle){
+        if (data.Body.ResponseHeader.RequestHandle !== RequestHandle) {
           console.log("Error writing point data! Invalid response handle.");
           return;
         }
@@ -1558,12 +1558,12 @@ else
   },
 
   // open trend visor of point info
-  tendencias: function() {
+  tendencias: function () {
     WebSAGE.vis_trend(NPTO);
   },
 
   // open trend visor
-  vis_trend: function(npt) {
+  vis_trend: function (npt) {
     window.open(
       "trend.html?NPONTO=" + npt,
       "Tendencias " + npt,
@@ -1573,7 +1573,7 @@ else
   },
 
   // open plot visor (historical) of point info
-  curvas: function() {
+  curvas: function () {
     if (F[NPTO] & 0x20)
       window.open(
         "/grafana/d/78X6BmvMk/json-scada-history-analog?var-point_tag=" + TAGS[NPTO],
@@ -1590,7 +1590,7 @@ else
   },
 
   // open tabular visor of bay, of point info
-  tabular: function() {
+  tabular: function () {
     window.open(
       "tabular.html?SUBST=" + ESTACAO + "&BAY=" + MODULO,
       "Tabular",
@@ -1599,11 +1599,11 @@ else
     setTimeout("WebSAGE.g_win_cmd.close()", 500);
   },
 
-  timerBlink: function() {
+  timerBlink: function () {
     requestAnimationFrame(WebSAGE.timerBlinkDraw);
   },
 
-  timerBlinkDraw: function() {
+  timerBlinkDraw: function () {
     var i;
     var half_opac = 0.5;
 
@@ -1665,8 +1665,43 @@ else
       obj.style.visibility = "collapse";
   },
 
+  tag_str_val: function (tag, obj) {
+
+    if (tag == "" || typeof tag === "undefined") {
+      return WebSAGE.g_retnok;
+    }
+
+    var t = parseInt(tag);
+
+    if (!isNaN(t)) {
+      // tag is a number
+      if (typeof S[t] === "undefined") {
+        WebSAGE.processInvalidTagInElement(tag, obj);
+        return WebSAGE.g_retnok;
+      } else {
+        if (obj && obj.style.visibility === "collapse")
+          obj.style.visibility = "inherit";
+        return S[t];
+      }
+    }
+
+    // tag is not a number, trim it
+    tag = tag.trim();
+
+    // test if tag corresponds to a number
+    if (typeof NPTS[tag] == "undefined") {
+      return WebSAGE.g_retnok;
+    }
+    // yes: convert to number and return
+    if (obj && obj.style.visibility === "collapse") {
+      obj.style.visibility = "inherit";
+    }
+    return S[NPTS[tag]];
+
+  },
+
   // retorna o valor do ponto, se houver, interpreta tags tipo !ALMnnnnn e !TMPnnnnn
-  valorTagueado: function(tag, obj) {
+  valorTagueado: function (tag, obj) {
     var t, n, f;
 
     if (tag == "" || typeof tag === "undefined") {
@@ -1851,10 +1886,10 @@ else
         );
       } catch (err) {
         if (err.toString().indexOf("contentWindow.WebSAGE is undefined") !== -1 ||
-            err.toString().indexOf("g_alminfo") !== -1
-           )
+          err.toString().indexOf("g_alminfo") !== -1
+        )
           return WebSAGE.g_retnok;
-   
+
         WebSAGE.processInvalidTagInElement(tag, obj);
         return WebSAGE.g_retnok;
       }
@@ -1866,23 +1901,31 @@ else
 
   // format value of point using extended printf convention
   // imprime valor do ponto formatado padrão printf extendido, com código para setas direcionais
-  interpretaFormatoC: function(fmt, tag, obj) {
-    var valr;
+  interpretaFormatoC: function (fmt, tag, obj) {
 
-    valr = WebSAGE.valorTagueado(tag, obj);
+    if (typeof fmt == "undefined") {
+      fmt = "%s";
+    }
+
+    if (fmt === "%s") {
+      var valr = WebSAGE.tag_str_val(tag, obj);
+      return printf(fmt, valr);
+    }
+
+    var valr = WebSAGE.valorTagueado(tag, obj);
 
     if (valr === WebSAGE.g_retnok) {
       return valr;
     }
 
     // se não tiver formato definido, retorna padrão
-    if (typeof fmt == "undefined") {
-      if (isNaN(parseFloat(valr))) {
-        fmt = "%s";
-      } else {
-        fmt = "%1.1f";
-      }
-    }
+    // if (typeof fmt == "undefined") {
+    //   if (isNaN(parseFloat(valr))) {
+    //     fmt = "%s";
+    //   } else {
+    //     fmt = "%1.1f";
+    //   }
+    // }
 
     var v = "";
     var Flg = WebSAGE.getFlags(tag);
@@ -1958,7 +2001,7 @@ else
   },
 
   // resolves clone tags like %n to n = point number
-  pegaTagClone: function(item, lb) {
+  pegaTagClone: function (item, lb) {
     var k;
     var l;
     var poseq;
@@ -2149,7 +2192,7 @@ else
   },
 
   // Distributes one object after another (to the right or bottom) inside a group
-  setGroupDistrib: function(grp) {
+  setGroupDistrib: function (grp) {
     var i, xright, bb, ybottom, dif, tl;
 
     for (i = 0; i < grp.children.length; i++) {
@@ -2193,7 +2236,7 @@ else
   },
 
   // page preview on mouse over (after a timeout)
-  setPreview: function(item, url, width, height) {
+  setPreview: function (item, url, width, height) {
     var winsz = "";
     if (typeof width != "undefined") {
       winsz =
@@ -2230,11 +2273,11 @@ else
       winsz +
       "if ( window.window.innerWidth < 100 + parseInt(window.document.getElementById('previewframe').width) ) { return; } " + // don't show if window not wide enough
       "if ( window.window.innerHeight < 100 + parseInt(window.document.getElementById('previewframe').height) ) { return; } " + // don't show if window not high enough
-        "window.WebSAGE.g_timerPreviewID = setTimeout( \"window.document.getElementById('previewframe').src = '" +
-        url +
-        "'; " +
-        "window.document.getElementById('previewdiv').style.display = '';\" , " +
-        "window.WebSAGE.g_timeOutPreview); "
+      "window.WebSAGE.g_timerPreviewID = setTimeout( \"window.document.getElementById('previewframe').src = '" +
+      url +
+      "'; " +
+      "window.document.getElementById('previewdiv').style.display = '';\" , " +
+      "window.WebSAGE.g_timeOutPreview); "
     );
     // when mouse out of the preview, close it
     document
@@ -2243,20 +2286,20 @@ else
         null,
         "onmouseout",
         "clearTimeout(window.WebSAGE.g_timerPreviewID); " +
-          "window.document.getElementById('previewdiv').style.display = 'none'; " +
-          "window.document.getElementById('previewframe').src = '';"
+        "window.document.getElementById('previewdiv').style.display = 'none'; " +
+        "window.document.getElementById('previewframe').src = '';"
       );
     // when mouse out of the item that activated the preview, close the preview
     item.setAttributeNS(
       null,
       "onmouseout",
       "clearTimeout(window.WebSAGE.g_timerPreviewID); " +
-        "window.document.getElementById('previewdiv').style.display = 'none'; " +
-        "window.document.getElementById('previewframe').src = '';"
+      "window.document.getElementById('previewdiv').style.display = 'none'; " +
+      "window.document.getElementById('previewframe').src = '';"
     );
   },
 
-  le_inkscapeSAGETags: function(item) {
+  le_inkscapeSAGETags: function (item) {
     // Tags do Integraxtor, XSAC, http://www.integraxor.com/
     var inksage_labeltxt =
       item.getAttributeNS(null, "inkscape:label") ||
@@ -2288,7 +2331,7 @@ else
           inksage_labeltxt =
             inksage_labeltxt.substr(0, pospfx) +
             WebSAGE.g_idprefixes[
-              parseInt(inksage_labeltxt.substr(pospfx + 3)) - 1
+            parseInt(inksage_labeltxt.substr(pospfx + 3)) - 1
             ] +
             aft.substr(aft.indexOf("_") + 1);
         }
@@ -2399,11 +2442,11 @@ else
                   null,
                   "transform",
                   (item.getAttributeNS(null, "transform") || "") +
-                    " translate(" +
-                    item.getAttributeNS(null, "x") +
-                    " " +
-                    item.getAttributeNS(null, "y") +
-                    ") "
+                  " translate(" +
+                  item.getAttributeNS(null, "x") +
+                  " " +
+                  item.getAttributeNS(null, "y") +
+                  ") "
                 );
                 break;
               case "#exec_once": // exec a script one time
@@ -2416,9 +2459,9 @@ else
                   }
                   evalprot(
                     'var thisobj=document.getElementById("' +
-                      item.id +
-                      '"); ' +
-                      inksage_labelvec[lbv].src
+                    item.id +
+                    '"); ' +
+                    inksage_labelvec[lbv].src
                   );
                 } catch (err) {
                   $("#SP_STATUS").text(err.name + ": " + err.message + " [8]");
@@ -2521,21 +2564,16 @@ else
             break;
           case "get":
             if (
-              inksage_labelvec[
-                lbv
-              ].parent.firstElementChild.textContent.indexOf("|") >= 0
+              inksage_labelvec[lbv].parent.firstElementChild.textContent.indexOf("|") >= 0
             ) {
               // guarda mensagens OFF|ON|FAILED
-              inksage_labelvec[lbv].txtOFFON = inksage_labelvec[
-                lbv
-              ].parent.firstElementChild.textContent.split("|");
+              inksage_labelvec[lbv].txtOFFON = inksage_labelvec[lbv].parent.firstElementChild.textContent.split("|");
             } else {
-              inksage_labelvec[lbv].formatoC =
-                inksage_labelvec[lbv].parent.firstElementChild.textContent;
+              inksage_labelvec[lbv].formatoC = inksage_labelvec[lbv].parent.firstElementChild.textContent;
 
               pnt = inksage_labelvec[lbv].tag;
               if (isNaN(parseInt(pnt))) {
-                setTimeout(function() {
+                setTimeout(function () {
                   var p = NPTS[pnt];
                   // show the plot preview on mouseover, after a time to get point definitions
                   WebSAGE.setPreview(
@@ -2665,12 +2703,12 @@ else
                   null,
                   "onclick",
                   "window.open( '" +
-                    inksage_labelvec[lbv].src.substr(4) +
-                    "','','dependent=yes,height=" +
-                    inksage_labelvec[lbv].height +
-                    ",width=" +
-                    inksage_labelvec[lbv].width +
-                    ",toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,modal=yes' );"
+                  inksage_labelvec[lbv].src.substr(4) +
+                  "','','dependent=yes,height=" +
+                  inksage_labelvec[lbv].height +
+                  ",width=" +
+                  inksage_labelvec[lbv].width +
+                  ",toolbar=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,modal=yes' );"
                 );
               } else if (inksage_labelvec[lbv].src.indexOf("preview:") === 0) {
                 WebSAGE.setPreview(
@@ -2686,28 +2724,28 @@ else
                     WebSAGE.g_seltela.options[t].value == idtela ||
                     WebSAGE.g_seltela.options[t].value == "../svg/" + idtela ||
                     WebSAGE.g_seltela.options[t].value ==
-                      "../svg/" + idtela + ".svg"
+                    "../svg/" + idtela + ".svg"
                   ) {
                     item.setAttributeNS(
                       null,
                       "onclick",
                       "window.WebSAGE.g_seltela.selectedIndex=" +
-                        t +
-                        "; window.document.fmTELA.submit();"
+                      t +
+                      "; window.document.fmTELA.submit();"
                     );
                     item.style.cursor = "pointer";
                     // show the linked page preview on mouseover
                     WebSAGE.setPreview(
                       item,
                       "?SELTELA=../svg/" +
-                        idtela +
-                        "&ZPX=0&ZPY=0&ZPW="+
-                        parseInt(ScreenViewer_SVGMaxWidth/ScreenViewer_DisplayPreviewZoom)
-                        +"&ZPH="+
-                        parseInt(ScreenViewer_SVGMaxHeight/ScreenViewer_DisplayPreviewZoom)
-                        +"&HIDETB=1",
-                      (inksage_labelvec[lbv].type==="_blank"?inksage_labelvec[lbv].width : ScreenViewer_DefaultDisplayPreviewWidth),
-                      (inksage_labelvec[lbv].type==="_blank"?inksage_labelvec[lbv].height : ScreenViewer_DefaultDisplayPreviewHeight)
+                      idtela +
+                      "&ZPX=0&ZPY=0&ZPW=" +
+                      parseInt(ScreenViewer_SVGMaxWidth / ScreenViewer_DisplayPreviewZoom)
+                      + "&ZPH=" +
+                      parseInt(ScreenViewer_SVGMaxHeight / ScreenViewer_DisplayPreviewZoom)
+                      + "&HIDETB=1",
+                      (inksage_labelvec[lbv].type === "_blank" ? inksage_labelvec[lbv].width : ScreenViewer_DefaultDisplayPreviewWidth),
+                      (inksage_labelvec[lbv].type === "_blank" ? inksage_labelvec[lbv].height : ScreenViewer_DefaultDisplayPreviewHeight)
                     );
                   }
                 }
@@ -2810,11 +2848,11 @@ else
                     Math.abs(inksage_labelvec[lbv].width * 1000);
                 }
                 WebSAGE.g_timeshift = WebSAGE.g_timeshift + 1000;
-                setTimeout( WebSAGE.getHistoricalData, 
-                    WebSAGE.g_timeOutRefresh/2 + WebSAGE.g_timeshift,
-                    WebSAGE.InkSage.length, 
-                    inksage_labelvec[lbv].tag, 
-                    new Date(inksage_labelvec[lbv].dataini));
+                setTimeout(WebSAGE.getHistoricalData,
+                  WebSAGE.g_timeOutRefresh / 2 + WebSAGE.g_timeshift,
+                  WebSAGE.InkSage.length,
+                  inksage_labelvec[lbv].tag,
+                  new Date(inksage_labelvec[lbv].dataini));
               }
             }
             break;
@@ -2898,14 +2936,14 @@ else
               null,
               "onclick",
               " window.WebSAGE.g_zpX = " +
-                bb.left +
-                ";window.WebSAGE.g_zpY = " +
-                bb.top +
-                ";window.WebSAGE.g_zpW = " +
-                bb.width * 2.0 +
-                ";window.WebSAGE.g_zpH = " +
-                bb.height * 2.0 +
-                ";window.WebSAGE.zoomPan(10);evt.currentTarget.style.display='none';"
+              bb.left +
+              ";window.WebSAGE.g_zpY = " +
+              bb.top +
+              ";window.WebSAGE.g_zpW = " +
+              bb.width * 2.0 +
+              ";window.WebSAGE.g_zpH = " +
+              bb.height * 2.0 +
+              ";window.WebSAGE.zoomPan(10);evt.currentTarget.style.display='none';"
             );
             break;
           case "script":
@@ -2921,7 +2959,7 @@ else
                     null,
                     "on" + inksage_labelvec[lbv].list[i].evt,
                     "thisobj=evt.currentTarget;" +
-                      inksage_labelvec[lbv].list[i].param
+                    inksage_labelvec[lbv].list[i].param
                   );
                   if (inksage_labelvec[lbv].list[i].evt.indexOf("mouse") >= 0)
                     if (typeof item.blockPopup == "undefined")
@@ -2937,9 +2975,9 @@ else
                     }
                     evalprot(
                       'var thisobj=document.getElementById("' +
-                        item.id +
-                        '"); ' +
-                        inksage_labelvec[lbv].list[i].param
+                      item.id +
+                      '"); ' +
+                      inksage_labelvec[lbv].list[i].param
                     );
                   } catch (err) {
                     $("#SP_STATUS").text(
@@ -2989,7 +3027,7 @@ else
     }
   },
 
-  preprocessaTela: function() {
+  preprocessaTela: function () {
     var nohs;
     var i;
 
@@ -3071,45 +3109,44 @@ else
     }
   },
 
-// acknowledges or quits event alarm
-ackAlarm: function( almquit, aggregate, pointId, evtid )
-{
-if (almquit === undefined)
-  almquit = 0;
-if (aggregate === undefined)
-  aggregate = 0;
-if (pointId === undefined)
-  pointId = 0;
-if (evtid === undefined)
-  evtid = 0;
+  // acknowledges or quits event alarm
+  ackAlarm: function (almquit, aggregate, pointId, evtid) {
+    if (almquit === undefined)
+      almquit = 0;
+    if (aggregate === undefined)
+      aggregate = 0;
+    if (pointId === undefined)
+      pointId = 0;
+    if (evtid === undefined)
+      evtid = 0;
 
-  var action = 0;
-  if (almquit === 1 && pointId === 0){ // remove all events
-     action = OpcAcknowledge.RemoveAllEvents | OpcAcknowledge.SilenceBeep;
-  }
-  if (almquit === 0 && pointId === 0){ // ack all events
-     action = OpcAcknowledge.AckAllEvents | OpcAcknowledge.SilenceBeep;
-  }
-  if (almquit === -1){ // only silcence beep
-     action = OpcAcknowledge.SilenceBeep;
-  }
-  if (almquit === 0 && aggregate === 1 && pointId !== 0){ // ack all events for a point
-     action = OpcAcknowledge.AckPointEvents | OpcAcknowledge.SilenceBeep;
-  }
-  if (almquit === 1 && aggregate === 1 && pointId !== 0){ // remove all events for a point
-     action = OpcAcknowledge.RemovePointEvents | OpcAcknowledge.SilenceBeep;
-  }
-  if (almquit === 0 && aggregate === 0 && pointId !== 0){ // ack one event
-     action = OpcAcknowledge.AckOneEvent | OpcAcknowledge.SilenceBeep;
-  }
-  if (almquit === 1 && aggregate === 0 && pointId !== 0){ // remove one event
-     action = OpcAcknowledge.RemoveOneEvent | OpcAcknowledge.SilenceBeep;
-  }
-  
+    var action = 0;
+    if (almquit === 1 && pointId === 0) { // remove all events
+      action = OpcAcknowledge.RemoveAllEvents | OpcAcknowledge.SilenceBeep;
+    }
+    if (almquit === 0 && pointId === 0) { // ack all events
+      action = OpcAcknowledge.AckAllEvents | OpcAcknowledge.SilenceBeep;
+    }
+    if (almquit === -1) { // only silcence beep
+      action = OpcAcknowledge.SilenceBeep;
+    }
+    if (almquit === 0 && aggregate === 1 && pointId !== 0) { // ack all events for a point
+      action = OpcAcknowledge.AckPointEvents | OpcAcknowledge.SilenceBeep;
+    }
+    if (almquit === 1 && aggregate === 1 && pointId !== 0) { // remove all events for a point
+      action = OpcAcknowledge.RemovePointEvents | OpcAcknowledge.SilenceBeep;
+    }
+    if (almquit === 0 && aggregate === 0 && pointId !== 0) { // ack one event
+      action = OpcAcknowledge.AckOneEvent | OpcAcknowledge.SilenceBeep;
+    }
+    if (almquit === 1 && aggregate === 0 && pointId !== 0) { // remove one event
+      action = OpcAcknowledge.RemoveOneEvent | OpcAcknowledge.SilenceBeep;
+    }
+
     var IdType = OpcKeyType.Numeric;
-    if ( isNaN(parseInt(pointId)) )
+    if (isNaN(parseInt(pointId)))
       IdType = OpcKeyType.String;
-    else  
+    else
       pointId = parseInt(pointId);
 
     // use OPC web hmi protocol https://prototyping.opcfoundation.org/
@@ -3157,11 +3194,11 @@ if (evtid === undefined)
       })
       .then(response => response.json())
       .then(data => {
-        if ( (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results) ||
-             (data.ServiceId !== OpcServiceCode.WriteResponse || data.Body.ResponseHeader.RequestHandle !== RequestHandle) ||
-             (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good && data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.GoodNoData)) {
-              console.log("Ack Alarm Error!");
-              return;
+        if ((!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results) ||
+          (data.ServiceId !== OpcServiceCode.WriteResponse || data.Body.ResponseHeader.RequestHandle !== RequestHandle) ||
+          (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good && data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.GoodNoData)) {
+          console.log("Ack Alarm Error!");
+          return;
         }
 
         // success
@@ -3170,109 +3207,109 @@ if (evtid === undefined)
         console.log(err);
       });
 
-},
+  },
 
-getHistoricalData: function (i, pnt, timeBegin) {
- 
-  var tag = pnt;
-  if ( !isNaN(parseInt(pnt)) ){
-    tag = TAGS[pnt];
-  }
+  getHistoricalData: function (i, pnt, timeBegin) {
 
-  if (!tag){
-    console.log("getHistoricalData invalid tag requested.");
-    return;
-  }
-
-  // use OPC web hmi protocol https://prototyping.opcfoundation.org/
-  var ServiceId = OpcServiceCode.HistoryReadRequest // read data service
-  var RequestHandle = Math.floor(Math.random() * 100000000)
-  var req = {
-    ServiceId: ServiceId,
-    Body: {
-      RequestHeader: {
-        Timestamp: new Date().toISOString(),
-        RequestHandle: RequestHandle,
-        TimeoutHint: 5000,
-        ReturnDiagnostics: 2,
-        AuthenticationToken: null
-      },
-      TimestampsToReturn: TimestampsToReturn.Server,
-      HistoryReadDetails: {
-        ParameterTypeId: OpcServiceCode.ReadRawModifiedDetails,
-        ParameterData: {
-          IsModified: false,
-          StartTime: timeBegin.toISOString(),
-          EndTime: new Date().toISOString()
-        }
-      },
-      NodesToRead: [
-        {
-          NodeId: {
-            IdType: OpcKeyType.String, // string key
-            Id: tag, // point string key
-            Namespace: OpcNamespacePostgresql
-          },
-          AttributeId: OpcAttributeId.Value
-        }
-      ]
+    var tag = pnt;
+    if (!isNaN(parseInt(pnt))) {
+      tag = TAGS[pnt];
     }
-  }
 
-  fetchTimeout("/Invoke/", 5000, {
-    method: "POST",
-    body: JSON.stringify(req),
-    headers: {
-      "Content-Type": "application/json"
+    if (!tag) {
+      console.log("getHistoricalData invalid tag requested.");
+      return;
     }
-  })
-    .then(function (response) {
-      return response;
+
+    // use OPC web hmi protocol https://prototyping.opcfoundation.org/
+    var ServiceId = OpcServiceCode.HistoryReadRequest // read data service
+    var RequestHandle = Math.floor(Math.random() * 100000000)
+    var req = {
+      ServiceId: ServiceId,
+      Body: {
+        RequestHeader: {
+          Timestamp: new Date().toISOString(),
+          RequestHandle: RequestHandle,
+          TimeoutHint: 5000,
+          ReturnDiagnostics: 2,
+          AuthenticationToken: null
+        },
+        TimestampsToReturn: TimestampsToReturn.Server,
+        HistoryReadDetails: {
+          ParameterTypeId: OpcServiceCode.ReadRawModifiedDetails,
+          ParameterData: {
+            IsModified: false,
+            StartTime: timeBegin.toISOString(),
+            EndTime: new Date().toISOString()
+          }
+        },
+        NodesToRead: [
+          {
+            NodeId: {
+              IdType: OpcKeyType.String, // string key
+              Id: tag, // point string key
+              Namespace: OpcNamespacePostgresql
+            },
+            AttributeId: OpcAttributeId.Value
+          }
+        ]
+      }
+    }
+
+    fetchTimeout("/Invoke/", 5000, {
+      method: "POST",
+      body: JSON.stringify(req),
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
-    .then(response => response.json())
-    .then(data => {
-      if (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results){
-        console.log("Historian invalid service response!");
-        return;
-      }
-      // response must have same request handle and be a read response or service fault 
-      if (data.Body.ResponseHeader.RequestHandle !== RequestHandle ||
-          (data.ServiceId !== OpcServiceCode.HistoryReadResponse && data.ServiceId !== OpcServiceCode.ServiceFault)
-         ){
-        console.log("Historian invalid or unexpected service response!");
-        return;
+      .then(function (response) {
+        return response;
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results) {
+          console.log("Historian invalid service response!");
+          return;
         }
-      if ( data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good ){
-        console.log("Historian service error!");
-        return;
-      }
-      if ( (typeof data.Body.Results[0].StatusCode === "number") && data.Body.Results[0].StatusCode !== 0 ){
-        console.log("Historian data not found for point " + pnt + " !");
-      }
+        // response must have same request handle and be a read response or service fault 
+        if (data.Body.ResponseHeader.RequestHandle !== RequestHandle ||
+          (data.ServiceId !== OpcServiceCode.HistoryReadResponse && data.ServiceId !== OpcServiceCode.ServiceFault)
+        ) {
+          console.log("Historian invalid or unexpected service response!");
+          return;
+        }
+        if (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good) {
+          console.log("Historian service error!");
+          return;
+        }
+        if ((typeof data.Body.Results[0].StatusCode === "number") && data.Body.Results[0].StatusCode !== 0) {
+          console.log("Historian data not found for point " + pnt + " !");
+        }
 
-      if (!WebSAGE.InkSage[i].hasOwnProperty("valores")) {
-        WebSAGE.InkSage[i].valores = [];
-        WebSAGE.InkSage[i].datas = [];
-      }
-      WebSAGE.InkSage[i].valores[pnt] = [];
-      WebSAGE.InkSage[i].datas[pnt] = [];
-      WebSAGE.InkSage[i].valores[pnt].length = 0;
-      WebSAGE.InkSage[i].datas[pnt].length = 0;
-      
-      data.Body.Results[0].HistoryData.map(node =>{
-        WebSAGE.InkSage[i].valores[pnt].push(node.Value.Body);
-        WebSAGE.InkSage[i].datas[pnt].push(Date.parse(node.ServerTimestamp));
+        if (!WebSAGE.InkSage[i].hasOwnProperty("valores")) {
+          WebSAGE.InkSage[i].valores = [];
+          WebSAGE.InkSage[i].datas = [];
+        }
+        WebSAGE.InkSage[i].valores[pnt] = [];
+        WebSAGE.InkSage[i].datas[pnt] = [];
+        WebSAGE.InkSage[i].valores[pnt].length = 0;
+        WebSAGE.InkSage[i].datas[pnt].length = 0;
+
+        data.Body.Results[0].HistoryData.map(node => {
+          WebSAGE.InkSage[i].valores[pnt].push(node.Value.Body);
+          WebSAGE.InkSage[i].datas[pnt].push(Date.parse(node.ServerTimestamp));
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
       });
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
   },
 
   getHistoricalSnapshot: function (querykeys, timeSnap) {
     if (typeof querykeys.length !== "number" || querykeys.length == 0)
-       return;
-    
+      return;
+
     var NodesToRead = [];
     querykeys.map(element => {
       var IdType, Id;
@@ -3285,17 +3322,17 @@ getHistoricalData: function (i, pnt, timeBegin) {
         Id = TAGS[element];
       }
       if (typeof Id === "string")
-      NodesToRead.push({
-        "NodeId": {
-          "IdType": IdType,
-          "Id": Id,
-          "Namespace": OpcNamespacePostgresql
-        },
-        "AttributeId": OpcAttributeId.Value
-      });
+        NodesToRead.push({
+          "NodeId": {
+            "IdType": IdType,
+            "Id": Id,
+            "Namespace": OpcNamespacePostgresql
+          },
+          "AttributeId": OpcAttributeId.Value
+        });
       return element;
     });
-    
+
     // use OPC web hmi protocol https://prototyping.opcfoundation.org/
     var ServiceId = OpcServiceCode.HistoryReadRequest // read data service
     var RequestHandle = Math.floor(Math.random() * 100000000)
@@ -3321,7 +3358,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
         NodesToRead: NodesToRead
       }
     }
-  
+
     fetchTimeout("/Invoke/", 5000, {
       method: "POST",
       body: JSON.stringify(req),
@@ -3334,63 +3371,63 @@ getHistoricalData: function (i, pnt, timeBegin) {
       })
       .then(response => response.json())
       .then(data => {
-        if (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results){
+        if (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results) {
           console.log("Historian invalid service response!");
           return;
         }
         // response must have same request handle and be a read response or service fault 
         if (data.Body.ResponseHeader.RequestHandle !== RequestHandle ||
-            (data.ServiceId !== OpcServiceCode.HistoryReadResponse && data.ServiceId !== OpcServiceCode.ServiceFault)
-           ){
+          (data.ServiceId !== OpcServiceCode.HistoryReadResponse && data.ServiceId !== OpcServiceCode.ServiceFault)
+        ) {
           console.log("Historian invalid or unexpected service response!");
           return;
-          }
-        if ( data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good ){
+        }
+        if (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good) {
           console.log("Historian service error!");
           return;
         }
 
-        data.Body.Results.map(node =>{
-          if ( node.StatusCode === OpcStatusCodes.Good )
-          if ( node.HistoryData.length > 0 ) {            
-            var pointKey = NPTS[node.NodeId.Id];
-            if ( typeof pointKey === "number" ){
-              if (node.HistoryData[0].Value.Type === OpcValueTypes.Boolean) {
-                V[pointKey] = node.HistoryData[0].Value.Body?0:1;
-                F[pointKey] = (node.HistoryData[0].Value.Body ? 0x02 : 0x01) | (node.HistoryData[0].Value.Quality & 0x80000000 ? 0x80 : 0x00);
-                T[pointKey] = node.HistoryData[0].ServerTimestamp;
-                S[pointKey] = "" + V[pointKey];
-              }
-              else if (node.HistoryData[0].Value.Type === OpcValueTypes.Double) {
-                V[pointKey] = node.HistoryData[0].Value.Body;
-                F[pointKey] = 0x20 | (node.HistoryData[0].Value.Quality & 0x80000000 ? 0x80 : 0x00);
-                T[pointKey] = node.HistoryData[0].ServerTimestamp;
-                S[pointKey] = "" + V[pointKey];
-              }
-              else if (node.HistoryData[0].Value.Type === OpcValueTypes.String) { 
-                V[pointKey] = parseFloat(node.HistoryData[0].Value.Body);
-                F[pointKey] = 0x20 | (node.HistoryData[0].Value.Quality & 0x80000000 ? 0x80 : 0x00);
-                T[pointKey] = node.HistoryData[0].ServerTimestamp;
-                S[pointKey] = node.HistoryData[0].Value.Body;
+        data.Body.Results.map(node => {
+          if (node.StatusCode === OpcStatusCodes.Good)
+            if (node.HistoryData.length > 0) {
+              var pointKey = NPTS[node.NodeId.Id];
+              if (typeof pointKey === "number") {
+                if (node.HistoryData[0].Value.Type === OpcValueTypes.Boolean) {
+                  V[pointKey] = node.HistoryData[0].Value.Body ? 0 : 1;
+                  F[pointKey] = (node.HistoryData[0].Value.Body ? 0x02 : 0x01) | (node.HistoryData[0].Value.Quality & 0x80000000 ? 0x80 : 0x00);
+                  T[pointKey] = node.HistoryData[0].ServerTimestamp;
+                  S[pointKey] = "" + V[pointKey];
+                }
+                else if (node.HistoryData[0].Value.Type === OpcValueTypes.Double) {
+                  V[pointKey] = node.HistoryData[0].Value.Body;
+                  F[pointKey] = 0x20 | (node.HistoryData[0].Value.Quality & 0x80000000 ? 0x80 : 0x00);
+                  T[pointKey] = node.HistoryData[0].ServerTimestamp;
+                  S[pointKey] = "" + V[pointKey];
+                }
+                else if (node.HistoryData[0].Value.Type === OpcValueTypes.String) {
+                  V[pointKey] = parseFloat(node.HistoryData[0].Value.Body);
+                  F[pointKey] = 0x20 | (node.HistoryData[0].Value.Quality & 0x80000000 ? 0x80 : 0x00);
+                  T[pointKey] = node.HistoryData[0].ServerTimestamp;
+                  S[pointKey] = node.HistoryData[0].Value.Body;
+                }
               }
             }
-          }
           return node;
         });
-        
+
         WebSAGE.showValsSVG();
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    },
-  
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },
+
   // obtains realtime data from the server translating it to 
   // internal data structures the call the SVG screen update routine
   getRealtimeData: function (querykeys, askinfo, callbacksuccess) {
     if (typeof querykeys.length !== "number" || querykeys.length == 0)
-       return;
-    
+      return;
+
     // use OPC web hmi protocol https://prototyping.opcfoundation.org/
     var ServiceId = OpcServiceCode.ReadRequest // read data service
     var RequestHandle = Math.floor(Math.random() * 100000000)
@@ -3444,33 +3481,33 @@ getHistoricalData: function (i, pnt, timeBegin) {
       })
       .then(response => response.json())
       .then(data => {
-        if (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle){
+        if (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle) {
           console.log("ReadRequest invalid service response!");
           return;
-          }
+        }
 
         // response must have same request handle and be a read response or service fault 
         if (data.Body.ResponseHeader.RequestHandle !== RequestHandle ||
-            (data.ServiceId !== OpcServiceCode.ReadResponse && data.ServiceId !== OpcServiceCode.ServiceFault)
-           ){
+          (data.ServiceId !== OpcServiceCode.ReadResponse && data.ServiceId !== OpcServiceCode.ServiceFault)
+        ) {
           console.log("ReadRequest invalid or unexpected service response!");
           return;
-          }
+        }
 
-        if ( data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good && 
-             data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.GoodNoData) {
+        if (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good &&
+          data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.GoodNoData) {
           console.log("ReadRequest service error!");
           // check access control denied, in this case go to initial page
-          if ( data.Body.ResponseHeader.ServiceResult === OpcStatusCodes.BadUserAccessDenied ||
-               data.Body.ResponseHeader.ServiceResult === OpcStatusCodes.BadIdentityTokenInvalid ||
-               data.Body.ResponseHeader.ServiceResult === OpcStatusCodes.BadIdentityTokenRejected 
-           ) {
-               window.onbeforeunload = null;
-               window.location.href = "/";
-           }
+          if (data.Body.ResponseHeader.ServiceResult === OpcStatusCodes.BadUserAccessDenied ||
+            data.Body.ResponseHeader.ServiceResult === OpcStatusCodes.BadIdentityTokenInvalid ||
+            data.Body.ResponseHeader.ServiceResult === OpcStatusCodes.BadIdentityTokenRejected
+          ) {
+            window.onbeforeunload = null;
+            window.location.href = "/";
+          }
           return;
         }
-  
+
         WebSAGE.Pass++;
 
         var prop;
@@ -3479,16 +3516,16 @@ getHistoricalData: function (i, pnt, timeBegin) {
             return;
           if (element.NodeId.IdType != 1)
             return;
-          prop = element._Properties;          
+          prop = element._Properties;
           var pointKey = prop._id;
 
           if (element.Value.Type === OpcValueTypes.Boolean) {
-            V[pointKey] = element.Value.Body?0:1;
+            V[pointKey] = element.Value.Body ? 0 : 1;
             F[pointKey] = (element.Value.Body ? 0x02 : 0x01);
             T[pointKey] = element.SourceTimestamp;
             if (element.Value.Body === true)
               S[pointKey] = prop.stateTextTrue;
-            else   
+            else
               S[pointKey] = prop.stateTextFalse;
           }
           else if (element.Value.Type === OpcValueTypes.Double) {
@@ -3501,32 +3538,32 @@ getHistoricalData: function (i, pnt, timeBegin) {
             T[pointKey] = element.SourceTimestamp;
             S[pointKey] = parseFloat(element.Value.Body).toFixed(3);
           }
-          else if (element.Value.Type === OpcValueTypes.String) { 
+          else if (element.Value.Type === OpcValueTypes.String) {
             V[pointKey] = parseFloat(element.Value.Body);
             F[pointKey] = 0x00;
             T[pointKey] = element.SourceTimestamp;
             S[pointKey] = element.Value.Body;
           }
-          F[pointKey] |= (element.Value.Quality & 0x80000000 ? 0x80 : 0x00) | 
-                         (prop.alarmed ? 0x100 : 0x000) |
-                         (prop.alarmDisabled ? 0x400 : 0x000) |
-                         (("annotation" in prop && prop.annotation!=="")? 0x200 : 0x000);
+          F[pointKey] |= (element.Value.Quality & 0x80000000 ? 0x80 : 0x00) |
+            (prop.alarmed ? 0x100 : 0x000) |
+            (prop.alarmDisabled ? 0x400 : 0x000) |
+            (("annotation" in prop && prop.annotation !== "") ? 0x200 : 0x000);
 
           TAGS[pointKey] = element.NodeId.Id;
           NPTS[element.NodeId.Id] = pointKey;
           if (prop.origin === "manual")
             F[pointKey] |= 0x0C;
-          if (typeof prop.notes == "string") 
+          if (typeof prop.notes == "string")
             DNOTES[pointKey] = prop.notes;
-          if (typeof prop.annotation == "string") 
+          if (typeof prop.annotation == "string")
             ANOTS[pointKey] = prop.annotation;
           if (typeof prop.description == "string") {
             SUBS[pointKey] = prop.group1;
             BAYS[pointKey] = prop.group2;
-            DCRS[pointKey] = (prop.ungroupedDescription!="")? prop.ungroupedDescription : prop.description;
+            DCRS[pointKey] = (prop.ungroupedDescription != "") ? prop.ungroupedDescription : prop.description;
             if (isNaN(prop.hiLimit) || prop.hiLimit === null)
               LIMSUPS[pointKey] = Infinity;
-            else  
+            else
               LIMSUPS[pointKey] = prop.hiLimit;
             if (isNaN(prop.loLimit) || prop.loLimit === null)
               LIMINFS[pointKey] = -Infinity;
@@ -3537,15 +3574,15 @@ getHistoricalData: function (i, pnt, timeBegin) {
           }
           return element;
         });
-        if ( typeof callbacksuccess == "function" )
-           callbacksuccess(prop);
+        if (typeof callbacksuccess == "function")
+          callbacksuccess(prop);
       })
       .catch(function (error) {
         console.log(error);
       });
   },
 
-  callServer: function() {
+  callServer: function () {
     if ($("#timemachinecontrols").css("display") != "none") {
       // vê se timemachine está ativo
       return;
@@ -3557,9 +3594,9 @@ getHistoricalData: function (i, pnt, timeBegin) {
     );
 
     // asks for real time data from the server, with point info on the first time
-    WebSAGE.getRealtimeData(WebSAGE.lstpnt.split(","), WebSAGE.Pass === 0, 
-      function(){ setTimeout(WebSAGE.showValsSVG(), 100);}
-      );
+    WebSAGE.getRealtimeData(WebSAGE.lstpnt.split(","), WebSAGE.Pass === 0,
+      function () { setTimeout(WebSAGE.showValsSVG(), 100); }
+    );
 
     // vou testar, na metade do tempo, o status do webserver para ver se houve alguma mudança
     WebSAGE.g_toutStatusID = setTimeout(
@@ -3572,74 +3609,74 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // pega status do servidor, variável ALARMBEEP
-  getServerStatus: function() {
+  getServerStatus: function () {
 
-    WebSAGE.getRealtimeData( [BEEP_POINTKEY, CNTUPDATES_POINTKEY], true,
-      prop => { 
-      // se mudou estado de alarme, vou atualizar lista logo
-      if ( NUM_VAR_ANT != WebSAGE.getValue(CNTUPDATES_POINTKEY) ) {
-        clearTimeout(WebSAGE.g_timeoutFalhaID);
-        clearTimeout(WebSAGE.g_toutID);
-        WebSAGE.g_toutID = setTimeout(WebSAGE.callServer, 100);
-      }
+    WebSAGE.getRealtimeData([BEEP_POINTKEY, CNTUPDATES_POINTKEY], true,
+      prop => {
+        // se mudou estado de alarme, vou atualizar lista logo
+        if (NUM_VAR_ANT != WebSAGE.getValue(CNTUPDATES_POINTKEY)) {
+          clearTimeout(WebSAGE.g_timeoutFalhaID);
+          clearTimeout(WebSAGE.g_toutID);
+          WebSAGE.g_toutID = setTimeout(WebSAGE.callServer, 100);
+        }
 
-      if (
-        BrowserDetect.browser == "Safari" &&
-        typeof WebSAGE.SafariRenderBugRedraw == "undefined"
-      ) {
-        WebSAGE.SafariRenderBugRedraw = 1;
-  
-        // ugly solution to mobile safari not rendering SVG: simulate a mouse click
-        setTimeout(function() {
-          var evt = document.createEvent("MouseEvents");
-          evt.initMouseEvent(
-            "mousedown",
-            true,
-            true,
-            window,
-            0,
-            0,
-            0,
-            80,
-            20,
-            false,
-            false,
-            false,
-            false,
-            0,
-            SVGDoc
-          );
-          SVGDoc.dispatchEvent(evt);
-        }, 100);
-        setTimeout(function() {
-          var evt = document.createEvent("MouseEvents");
-          evt.initMouseEvent(
-            "mouseup",
-            true,
-            true,
-            window,
-            0,
-            0,
-            0,
-            80,
-            20,
-            false,
-            false,
-            false,
-            false,
-            0,
-            null
-          );
-          SVGDoc.dispatchEvent(evt);
-        }, 105);
-      }        
+        if (
+          BrowserDetect.browser == "Safari" &&
+          typeof WebSAGE.SafariRenderBugRedraw == "undefined"
+        ) {
+          WebSAGE.SafariRenderBugRedraw = 1;
 
-      ALARMBEEP = WebSAGE.getValue(BEEP_POINTKEY);
-      NUM_VAR_ANT = WebSAGE.getValue(CNTUPDATES_POINTKEY);
-      });   
+          // ugly solution to mobile safari not rendering SVG: simulate a mouse click
+          setTimeout(function () {
+            var evt = document.createEvent("MouseEvents");
+            evt.initMouseEvent(
+              "mousedown",
+              true,
+              true,
+              window,
+              0,
+              0,
+              0,
+              80,
+              20,
+              false,
+              false,
+              false,
+              false,
+              0,
+              SVGDoc
+            );
+            SVGDoc.dispatchEvent(evt);
+          }, 100);
+          setTimeout(function () {
+            var evt = document.createEvent("MouseEvents");
+            evt.initMouseEvent(
+              "mouseup",
+              true,
+              true,
+              window,
+              0,
+              0,
+              0,
+              80,
+              20,
+              false,
+              false,
+              false,
+              false,
+              0,
+              null
+            );
+            SVGDoc.dispatchEvent(evt);
+          }, 105);
+        }
+
+        ALARMBEEP = WebSAGE.getValue(BEEP_POINTKEY);
+        NUM_VAR_ANT = WebSAGE.getValue(CNTUPDATES_POINTKEY);
+      });
   },
 
-  blinkSeAlarmado: function(tag, item) {
+  blinkSeAlarmado: function (tag, item) {
     var f;
     if (typeof item.allowblink != "undefined")
       if (!item.allowblink) {
@@ -3669,7 +3706,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
     }
   },
 
-  showValsSVG: function() {
+  showValsSVG: function () {
     clearTimeout(WebSAGE.g_timeoutFalhaID);
 
     if (document.hidden) {
@@ -3680,7 +3717,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // Substitui os conteudos objeto com ID=PNTnumero no SVG, ex: ID=PNT8056
-  drawSVG: function() {
+  drawSVG: function () {
     var attr, cor, fill, stroke, attrib, attribval, vis, x, flind, bb, ft, f, t;
     var i, j;
     var mudou_ana = true;
@@ -3754,9 +3791,9 @@ getHistoricalData: function (i, pnt, timeBegin) {
                     }
                     evalprot(
                       'var thisobj=document.getElementById("' +
-                        WebSAGE.InkSage[i].parent.id +
-                        '"); ' +
-                        WebSAGE.InkSage[i].src
+                      WebSAGE.InkSage[i].parent.id +
+                      '"); ' +
+                      WebSAGE.InkSage[i].src
                     );
                   } catch (err) {
                     $("#SP_STATUS").text(
@@ -3810,15 +3847,15 @@ getHistoricalData: function (i, pnt, timeBegin) {
                         if (
                           vt ==
                           WebSAGE.InkSage[i].valores[tag][
-                            WebSAGE.InkSage[i].valores[tag].length - 1
+                          WebSAGE.InkSage[i].valores[tag].length - 1
                           ]
                         )
                           if (
                             (d.getTime() -
                               WebSAGE.InkSage[i].datas[
-                                WebSAGE.InkSage[i].datas[tag].length - 1
+                              WebSAGE.InkSage[i].datas[tag].length - 1
                               ]) /
-                              1000 <
+                            1000 <
                             30
                           )
                             break;
@@ -3858,7 +3895,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
                               bb.right -
                               parseFloat(
                                 (secdif / Math.abs(WebSAGE.InkSage[i].width)) *
-                                  bb.width
+                                bb.width
                               );
                             yy =
                               bb.bottom -
@@ -3866,7 +3903,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
                                 ((WebSAGE.InkSage[i].valores[tag][indv] -
                                   WebSAGE.InkSage[i].y) /
                                   WebSAGE.InkSage[i].height) *
-                                  bb.height
+                                bb.height
                               );
                             if (yy > bb.bottom) {
                               yy = bb.bottom;
@@ -3917,7 +3954,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
                               bb.left +
                               parseFloat(
                                 (secdif / Math.abs(WebSAGE.InkSage[i].width)) *
-                                  bb.width
+                                bb.width
                               );
                             yy =
                               bb.bottom -
@@ -3925,7 +3962,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
                                 ((WebSAGE.InkSage[i].valores[tag][indv] -
                                   WebSAGE.InkSage[i].y) /
                                   WebSAGE.InkSage[i].height) *
-                                  bb.height
+                                bb.height
                               );
                             if (yy > bb.bottom) {
                               yy = bb.bottom;
@@ -3995,12 +4032,12 @@ getHistoricalData: function (i, pnt, timeBegin) {
                 if (
                   typeof WebSAGE.InkSage[i].parent.changeAnim !== "undefined" &&
                   typeof WebSAGE.InkSage[i].parent.changeAnim.beginElement ===
-                    "function"
+                  "function"
                 ) {
                   try {
-                  WebSAGE.InkSage[i].parent.changeAnim.endElement();
-                  WebSAGE.InkSage[i].parent.changeAnim.beginElement();
-                  } catch (e){}
+                    WebSAGE.InkSage[i].parent.changeAnim.endElement();
+                    WebSAGE.InkSage[i].parent.changeAnim.beginElement();
+                  } catch (e) { }
                 }
 
                 if (WebSAGE.InkSage[i].parent.groupDistrib) {
@@ -4162,11 +4199,11 @@ getHistoricalData: function (i, pnt, timeBegin) {
                   }
                   evalprot(
                     'var tag="' +
-                      tag +
-                      '";var thisobj=window.SVGDoc.getElementById("' +
-                      WebSAGE.InkSage[i].parent.id +
-                      '"); ' +
-                      script,
+                    tag +
+                    '";var thisobj=window.SVGDoc.getElementById("' +
+                    WebSAGE.InkSage[i].parent.id +
+                    '"); ' +
+                    script,
                     i
                   );
                 } catch (err) {
@@ -4237,20 +4274,20 @@ getHistoricalData: function (i, pnt, timeBegin) {
                   null,
                   "inkscape:transform-center-x"
                 ) ||
-                  WebSAGE.InkSage[i].parent.getAttributeNS(
-                    "http://www.inkscape.org/namespaces/inkscape",
-                    "transform-center-x"
-                  )
+                WebSAGE.InkSage[i].parent.getAttributeNS(
+                  "http://www.inkscape.org/namespaces/inkscape",
+                  "transform-center-x"
+                )
               );
               var tcy = parseFloat(
                 WebSAGE.InkSage[i].parent.getAttributeNS(
                   null,
                   "inkscape:transform-center-y"
                 ) ||
-                  WebSAGE.InkSage[i].parent.getAttributeNS(
-                    "http://www.inkscape.org/namespaces/inkscape",
-                    "transform-center-y"
-                  )
+                WebSAGE.InkSage[i].parent.getAttributeNS(
+                  "http://www.inkscape.org/namespaces/inkscape",
+                  "transform-center-y"
+                )
               );
               if (isNaN(tcx)) {
                 tcx = 0;
@@ -4268,13 +4305,13 @@ getHistoricalData: function (i, pnt, timeBegin) {
                 null,
                 "transform",
                 WebSAGE.InkSage[i].inittransform +
-                  " rotate(" +
-                  ang +
-                  " " +
-                  xcen +
-                  " " +
-                  ycen +
-                  ") "
+                " rotate(" +
+                ang +
+                " " +
+                xcen +
+                " " +
+                ycen +
+                ") "
               );
               WebSAGE.blinkSeAlarmado(tag, WebSAGE.InkSage[i].parent);
               break;
@@ -4333,11 +4370,11 @@ getHistoricalData: function (i, pnt, timeBegin) {
                 null,
                 "transform",
                 WebSAGE.InkSage[i].inittransform +
-                  " translate(" +
-                  proporcao * WebSAGE.InkSage[i].rangex +
-                  " " +
-                  proporcao * WebSAGE.InkSage[i].rangey +
-                  ") "
+                " translate(" +
+                proporcao * WebSAGE.InkSage[i].rangex +
+                " " +
+                proporcao * WebSAGE.InkSage[i].rangey +
+                ") "
               );
               WebSAGE.blinkSeAlarmado(tag, WebSAGE.InkSage[i].parent);
               break;
@@ -4406,9 +4443,9 @@ getHistoricalData: function (i, pnt, timeBegin) {
                       }
                       evalprot(
                         'var thisobj=document.getElementById("' +
-                          WebSAGE.InkSage[i].parent.id +
-                          '"); ' +
-                          WebSAGE.InkSage[i].list[j].param
+                        WebSAGE.InkSage[i].parent.id +
+                        '"); ' +
+                        WebSAGE.InkSage[i].list[j].param
                       );
                     } catch (err) {
                       $("#SP_STATUS").text(
@@ -4438,7 +4475,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       if (typeof xPlain != "undefined")
         if (BrowserDetect.browser === "Chrome") {
           // ugly solution for Chrome bug related to redraw of inline <use> svg elements (simulate a mouse down/up)
-          setTimeout(function() {
+          setTimeout(function () {
             var evt = document.createEvent("MouseEvents");
             evt.initMouseEvent(
               "mousedown",
@@ -4459,7 +4496,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
             );
             SVGDoc.dispatchEvent(evt);
           }, 100);
-          setTimeout(function() {
+          setTimeout(function () {
             var evt = document.createEvent("MouseEvents");
             evt.initMouseEvent(
               "mouseup",
@@ -4502,12 +4539,12 @@ getHistoricalData: function (i, pnt, timeBegin) {
       document.getElementById("svgdiv").style.opacity = 1;
   }, // showValsSVG
 
-  doSilenceBeep: function() {
+  doSilenceBeep: function () {
     WebSAGE.ackAlarm(-1);
   },
 
   // cria as elipses amarelas de destaque de seleção de objetos
-  produzDestaq: function(obj, ponto) {
+  produzDestaq: function (obj, ponto) {
     var svg_ns, block, bb, x, y, rx, ry, id, aux, el, xfm;
 
     if (ponto === 99999 || ponto === 0) return;
@@ -4597,7 +4634,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // cria as etiquetas de anotação
-  produzEtiq: function(obj, ponto) {
+  produzEtiq: function (obj, ponto) {
     var animation, svg_ns, block, bb, x, y, id, eletq, aux, xfm;
     //if (isNaN(parseInt(ponto)))
     //  id=id;
@@ -4700,7 +4737,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
 
   // Processa visibilidade das etiquetas
   // Existem dois tipos de etiquetas com cores diferentes, para anotação e alarme inibido
-  visibEtiq: function(ponto) {
+  visibEtiq: function (ponto) {
     var eid, eletq, Fl;
 
     eid = "ANOT" + ponto;
@@ -4710,7 +4747,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
 
     if (eletq !== null) {
       // existe a etiqueta?
-      if (WebSAGE.getAnnotation(ponto)!=="") {
+      if (WebSAGE.getAnnotation(ponto) !== "") {
         // anotação
         if (eletq.getAttributeNS(null, "display") !== "inline") {
           eletq.setAttributeNS(null, "stroke", ScreenViewer_TagStrokeColor);
@@ -4720,7 +4757,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
         }
 
         // annotation tooltip 
-        SVGDoc.getElementById(eid).firstElementChild.textContent=WebSAGE.getAnnotation(ponto).replace(/\\|\\^/g, "\\n");
+        SVGDoc.getElementById(eid).firstElementChild.textContent = WebSAGE.getAnnotation(ponto).replace(/\\|\\^/g, "\\n");
 
       } else if (Fl & 0x400) {
         // alarme inibido
@@ -4745,7 +4782,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // cria textos para mostrar relacionamentos
-  produzRelac: function(obj, ponto) {
+  produzRelac: function (obj, ponto) {
     /* 
  
  var svg_ns, block, bb, x, y, id, aux, xfm;
@@ -4811,7 +4848,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // mostra/esconde os relacionamentos, através dos objetos criados na função produzRelac
-  mostraescRelac: function() {
+  mostraescRelac: function () {
     var nohs = SVGDoc.getElementsByTagName("text");
     for (var i = 0; i < nohs.length; i++) {
       if (typeof nohs.item(i).relacionamento === "number") {
@@ -4829,7 +4866,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // falha todos os dados caso servidor pare de atualizar por um tempo
-  falhaTudo: function() {
+  falhaTudo: function () {
     for (var x in F) {
       F[x] |= 0x80;
     }
@@ -4837,7 +4874,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // faz sumir e aparecer a barra superior de botões
-  hideShowBar: function() {
+  hideShowBar: function () {
     // não permite esconder a toolbar quando tem máquina do tempo
     if (document.getElementById("timemachinecontrols").style.display != "none")
       return;
@@ -4853,7 +4890,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
     }
   },
 
-  zoomPan: function(opc, mul) {
+  zoomPan: function (opc, mul) {
     if (SVGDoc === null) {
       return;
     }
@@ -4908,30 +4945,30 @@ getHistoricalData: function (i, pnt, timeBegin) {
       null,
       "viewBox",
       WebSAGE.g_zpX +
-        " " +
-        WebSAGE.g_zpY +
-        " " +
-        WebSAGE.g_zpW +
-        " " +
-        WebSAGE.g_zpH
+      " " +
+      WebSAGE.g_zpY +
+      " " +
+      WebSAGE.g_zpW +
+      " " +
+      WebSAGE.g_zpH
     );
   },
 
-  anteTela: function() {
+  anteTela: function () {
     if (WebSAGE.g_seltela.selectedIndex > 1) {
       WebSAGE.g_seltela.selectedIndex--;
       document.fmTELA.submit();
     }
   },
 
-  proxTela: function() {
+  proxTela: function () {
     if (WebSAGE.g_seltela.selectedIndex < WebSAGE.g_seltela.length - 1) {
       WebSAGE.g_seltela.selectedIndex++;
       document.fmTELA.submit();
     }
   },
 
-  playSlideshow: function() {
+  playSlideshow: function () {
     if (WebSAGE.g_seltela.selectedIndex < WebSAGE.g_seltela.length - 1) {
       WebSAGE.g_seltela.selectedIndex++;
     } else {
@@ -4943,7 +4980,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
     document.fmTELA.submit();
   },
 
-  pauseSlideshow: function() {
+  pauseSlideshow: function () {
     if (ScreenViewer_EnableTimeMachine) {
       $("#TIMEMACHINE_ID").css("display", "");
     }
@@ -4955,7 +4992,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // recarrega a página 1x por dia para contornar leak de memória
-  reload: function(whattodo) {
+  reload: function (whattodo) {
     if (whattodo === "init") {
       var dt = new Date(new Date().getTime() + 1000 * 60 * 60 * 24); // próximo dia
       dt.setHours(4); // fixa 4 horas
@@ -5013,8 +5050,8 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // envia ao servidor pedido reconhece alarmes do ponto
-  reconhece: function(pointKey) {
-    if (!(WebSAGE.getFlags(pointKey) & 0x100)) 
+  reconhece: function (pointKey) {
+    if (!(WebSAGE.getFlags(pointKey) & 0x100))
       return
 
     // use OPC web hmi protocol https://prototyping.opcfoundation.org/
@@ -5059,11 +5096,11 @@ getHistoricalData: function (i, pnt, timeBegin) {
       })
       .then(response => response.json())
       .then(data => {
-        if ( (!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results) ||
-             (data.ServiceId !== OpcServiceCode.WriteResponse || data.Body.ResponseHeader.RequestHandle !== RequestHandle) ||
-             (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good && data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.GoodNoData)) {
-              console.log(err);
-              return;
+        if ((!data.ServiceId || !data.Body || !data.Body.ResponseHeader || !data.Body.ResponseHeader.RequestHandle || !data.Body.Results) ||
+          (data.ServiceId !== OpcServiceCode.WriteResponse || data.Body.ResponseHeader.RequestHandle !== RequestHandle) ||
+          (data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.Good && data.Body.ResponseHeader.ServiceResult !== OpcStatusCodes.GoodNoData)) {
+          console.log(err);
+          return;
         }
 
         // success
@@ -5074,7 +5111,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
 
   },
 
-  setaCorFundo: function(cor) {
+  setaCorFundo: function (cor) {
     if (cor == "none") {
       var sodipodibase = SVGDoc.getElementById("base");
       if (sodipodibase)
@@ -5091,7 +5128,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
     document.body.bgColor = cor;
   },
 
-  mostraDestaqPonto: function(nponto) {
+  mostraDestaqPonto: function (nponto) {
     if (!nponto)
       return;
     var elem = SVGDoc.getElementById("DESTAQ" + nponto);
@@ -5100,15 +5137,15 @@ getHistoricalData: function (i, pnt, timeBegin) {
       elem.setAttributeNS(null, "display", "inline");
       if (typeof elem.anim.beginElement !== "undefined") {
         elem.anim.endElement();
-        setTimeout( function() {
-        elem.anim.endElement();
-        elem.anim.beginElement();
+        setTimeout(function () {
+          elem.anim.endElement();
+          elem.anim.beginElement();
         }, 100);
       }
     }
   },
 
-  escondeDestaqPonto: function(nponto) {
+  escondeDestaqPonto: function (nponto) {
     if (!nponto)
       return;
     var elem = SVGDoc.getElementById("DESTAQ" + nponto);
@@ -5123,7 +5160,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // lista os pontos que tem objeto associado na tela, para seleção pelo teclado
-  listaDestacaveis: function() {
+  listaDestacaveis: function () {
     var id;
     var nponto;
 
@@ -5135,7 +5172,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
     }
   },
 
-  mostraDestaqSel: function(direction, cmd) {
+  mostraDestaqSel: function (direction, cmd) {
     if (NPTO != 0) {
       return;
     }
@@ -5178,16 +5215,16 @@ getHistoricalData: function (i, pnt, timeBegin) {
       // esconde o selecionado depois de um tempo
       setTimeout(
         "WebSAGE.escondeDestaqPonto(" +
-          WebSAGE.g_destaqList[WebSAGE.g_indSelPonto] +
-          ")",
+        WebSAGE.g_destaqList[WebSAGE.g_indSelPonto] +
+        ")",
         5000
       );
     }
   },
 
   // Prepara a máquina do tempo
-  setupTimeMachine: function() {
-    $("#TIMEMACHINE_ID").bind("click", function() {
+  setupTimeMachine: function () {
+    $("#TIMEMACHINE_ID").bind("click", function () {
       // mostra controles da máquina do tempo
       clearTimeout(WebSAGE.g_toutID);
       clearTimeout(WebSAGE.g_toutStatusID);
@@ -5219,7 +5256,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       document.getElementById("almiframe").style.display = "none";
     });
 
-    $("#TIMEMACHINECLOSE_ID").bind("click", function() {
+    $("#TIMEMACHINECLOSE_ID").bind("click", function () {
       // sai da máquina do tempo, retornando ao tempo real
       document.fmTELA.style.display = "";
       $("#timemachinecontrols").css("display", "none");
@@ -5281,21 +5318,21 @@ getHistoricalData: function (i, pnt, timeBegin) {
       clearTimeout(WebSAGE.g_toutID);
       clearTimeout(WebSAGE.g_timeoutFalhaID);
 
-      var timePieces = document.getElementById("tmpk").value.split(':');    
+      var timePieces = document.getElementById("tmpk").value.split(':');
       if (timePieces.length == 2)
         timePieces[2] = 0;
 
-      dt.setTime(dt.getTime() + 
-                 ((dt.getTimezoneOffset()/60)*60*60*1000) + 
-                 (timePieces[0]*60*60*1000) + (timePieces[1]*60*1000) + (timePieces[2]*1000));
-      
+      dt.setTime(dt.getTime() +
+        ((dt.getTimezoneOffset() / 60) * 60 * 60 * 1000) +
+        (timePieces[0] * 60 * 60 * 1000) + (timePieces[1] * 60 * 1000) + (timePieces[2] * 1000));
+
       WebSAGE.getHistoricalSnapshot(WebSAGE.lstpnt.split(","), dt);
 
       document.getElementById("timesldr").focus();
       $("#timemachinecontrols").css("display", "");
     }
 
-    document.getElementById("timesldr").onchange = function() {
+    document.getElementById("timesldr").onchange = function () {
       clearTimeout(tmoutchangeDate);
       tmoutchangeDate = setTimeout(changeDate, 500);
       var secs = document.getElementById("timesldr").value;
@@ -5307,13 +5344,13 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
     };
 
-    document.getElementById("dtpk").onchange = function() {
+    document.getElementById("dtpk").onchange = function () {
       clearTimeout(tmoutchangeDate);
       $("#timemachinecontrols").css("display", "none");
       tmoutchangeDate = setTimeout(changeDate, 500);
     };
 
-    document.getElementById("tmpk").onchange = function() {
+    document.getElementById("tmpk").onchange = function () {
       document.getElementById("timesldr").value =
         document.getElementById("tmpk").valueAsNumber / 1000;
       clearTimeout(tmoutchangeDate);
@@ -5321,7 +5358,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
     };
   },
 
-  TraduzCor: function(cor) {
+  TraduzCor: function (cor) {
     var num;
     if (cor.substr(0, 5) == "-cor-" || cor.substr(0, 5) == "-clr-")
       switch (cor) {
@@ -5355,7 +5392,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
   },
 
   // Make an element dragabble
-  makeDraggable: function(obj) {
+  makeDraggable: function (obj) {
     if (!obj) return;
 
     obj.style.cursor = "crosshair";
@@ -5367,7 +5404,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       obj.inittransform = obj.getAttributeNS(null, "transform");
     if (obj.inittransform === null) obj.inittransform = "";
 
-    $(obj).bind("mousedown", function(event) {
+    $(obj).bind("mousedown", function (event) {
       if (obj.style.display == "none") {
         // do not initiate drag if object already not displayed
         obj.style.cursor = "crosshair";
@@ -5389,7 +5426,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       obj.drgMouseOffsetY = p.y - obj.drgY;
     });
 
-    $(obj).bind("mouseup", function(event) {
+    $(obj).bind("mouseup", function (event) {
       obj.style.cursor = "crosshair";
       obj.drgDragging = false;
       obj.drgMouseOffsetX = 0;
@@ -5397,7 +5434,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       window.drgObject = null;
     });
 
-    $(obj).bind("mousemove", function(event) {
+    $(obj).bind("mousemove", function (event) {
       if (obj.drgDragging === true) {
         var p = SVGDoc.createSVGPoint();
         p.x = event.clientX;
@@ -5426,14 +5463,14 @@ getHistoricalData: function (i, pnt, timeBegin) {
     });
   },
 
-  pinnedAnnotations: function() {
+  pinnedAnnotations: function () {
     if (ScreenTagFilter.trim() === "") return;
     var elem = document.getElementById("pinnedannotations");
     if (elem !== null) {
       var container = document.getElementById("pinnedannotations_outer");
       elem.style.overflowX = "hidden";
       elem.style.width = ScreenViewer_PinnedAnnotationsWidth;
-      container.addEventListener("click", function() {
+      container.addEventListener("click", function () {
         if (this.style.maxHeight != "35px") {
           this.style.maxHeight = "35px";
           this.style.overflowY = "hidden";
@@ -5447,14 +5484,13 @@ getHistoricalData: function (i, pnt, timeBegin) {
         getPinnedAnnotations();
       });
 
-      function stripHtml(html)
-      {
-         var tmp = document.createElement("DIV");
-         tmp.innerHTML = html;
-         return tmp.textContent || tmp.innerText || "";
+      function stripHtml(html) {
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        return tmp.textContent || tmp.innerText || "";
       };
 
-      var getPinnedAnnotations = function() {
+      var getPinnedAnnotations = function () {
         var text = "", html = "";
         var anotstyle =
           "flex:1;flex-shrink:1;flex-grow:0;white-space:pre-line;margin:2px" +
@@ -5475,14 +5511,14 @@ getHistoricalData: function (i, pnt, timeBegin) {
         var cnt = 0;
         for (var pointKey in DNOTES) {
           var anot = DNOTES[pointKey];
-        
-          if ( anot.indexOf("#PIN") !== -1){
+
+          if (anot.indexOf("#PIN") !== -1) {
             cnt++;
 
-            if (typeof TAGS[pointKey] === "string"){
-              text = ":: " + SUBS[pointKey] + " | " + BAYS[pointKey] + " | " + DCRS[pointKey] + "\n";              
+            if (typeof TAGS[pointKey] === "string") {
+              text = ":: " + SUBS[pointKey] + " | " + BAYS[pointKey] + " | " + DCRS[pointKey] + "\n";
               text = text + anot.replace("#PIN", "") + "\n";
-              html = html + "<div id='PINANNOT_" + pointKey + "' style='" + anotstyle + ";border-radius:5px;'>"+ stripHtml(text)+"</div>";
+              html = html + "<div id='PINANNOT_" + pointKey + "' style='" + anotstyle + ";border-radius:5px;'>" + stripHtml(text) + "</div>";
             }
           }
         };
@@ -5491,23 +5527,23 @@ getHistoricalData: function (i, pnt, timeBegin) {
           return;
         }
 
-        if ( elem.innerHTML !== html)
+        if (elem.innerHTML !== html)
           elem.innerHTML = html;
 
         elem.style.display = "flex";
-        if ( document.getElementById("PINANNOT_COUNT").textContent != cnt )
+        if (document.getElementById("PINANNOT_COUNT").textContent != cnt)
           document.getElementById("PINANNOT_COUNT").textContent = cnt;
         if (container.style.maxHeight === "35px") {
           document.getElementById("PINANNOT_COUNT").style.display = "";
         } else
-          document.getElementById("PINANNOT_COUNT").style.display = "none";        
+          document.getElementById("PINANNOT_COUNT").style.display = "none";
       }
       setTimeout(getPinnedAnnotations, 2000);
       setInterval(getPinnedAnnotations, 9500);
     }
   },
 
-  init: function() {
+  init: function () {
     var i;
 
     WebSAGE.g_loadtime = new Date();
@@ -5515,25 +5551,25 @@ getHistoricalData: function (i, pnt, timeBegin) {
     $("#SP_STATUS").text("");
 
     // vai nos objetos com 'id' e coloca como 'title' a mensagem correspondente de Titles, carrega as imagens (de images.js)
-    $("img[id]").attr("src", function(index) {
+    $("img[id]").attr("src", function (index) {
       return Imgs[this.id];
     });
-    $("img[id]").attr("title", function(index) {
+    $("img[id]").attr("title", function (index) {
       return Titles[this.id];
     });
-    $("area[id]").attr("title", function(index) {
+    $("area[id]").attr("title", function (index) {
       return Titles[this.id];
     });
-    $("select[id]").attr("title", function(index) {
+    $("select[id]").attr("title", function (index) {
       return Titles[this.id];
     });
-    $("span[id]").attr("title", function(index) {
+    $("span[id]").attr("title", function (index) {
       return Titles[this.id];
     });
     $("#SELTELA_OPC1").text(Msg.SELTELA_OPC1);
     $("#HORA_ATU").css("color", ScreenViewer_DateColor);
 
-    $("#PRODUTO_ID").bind("dblclick", function() {
+    $("#PRODUTO_ID").bind("dblclick", function () {
       window.open(
         "about.html",
         "About ",
@@ -5577,7 +5613,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       if (BrowserDetect.OS != "iPad") {
         // não sendo iPad
         if (SVGDoc != null)
-          SVGDoc.onclick = function() {
+          SVGDoc.onclick = function () {
             var elem = window.document.getElementById("SELTELA");
             elem.focus();
             elem.blur();
@@ -5627,7 +5663,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
 
     if (typeof xPlain == "undefined") {
       $("#bardiv").css("display", ""); // shows toolbar
-      $("#bardiv").bind("mouseover", function(event) {
+      $("#bardiv").bind("mouseover", function (event) {
         if (document.getElementById("svgdiv").style.top == "0px") {
           WebSAGE.hideShowBar();
         }
@@ -5646,7 +5682,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
 
       shortcut.add(
         "F9",
-        function() {
+        function () {
           WebSAGE.doSilenceBeep();
         },
         { type: "keydown", propagate: false, target: document }
@@ -5665,7 +5701,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       });
       shortcut.add(
         "1",
-        function() {
+        function () {
           if (1 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 1;
             document.fmTELA.submit();
@@ -5680,7 +5716,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "2",
-        function() {
+        function () {
           if (2 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 2;
             document.fmTELA.submit();
@@ -5695,7 +5731,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "3",
-        function() {
+        function () {
           if (3 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 3;
             document.fmTELA.submit();
@@ -5710,7 +5746,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "4",
-        function() {
+        function () {
           if (4 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 4;
             document.fmTELA.submit();
@@ -5725,7 +5761,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "5",
-        function() {
+        function () {
           if (5 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 5;
             document.fmTELA.submit();
@@ -5740,7 +5776,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "6",
-        function() {
+        function () {
           if (6 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 6;
             document.fmTELA.submit();
@@ -5755,7 +5791,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "7",
-        function() {
+        function () {
           if (7 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 7;
             document.fmTELA.submit();
@@ -5770,7 +5806,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "8",
-        function() {
+        function () {
           if (8 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 8;
             document.fmTELA.submit();
@@ -5785,7 +5821,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "9",
-        function() {
+        function () {
           if (9 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 9;
             document.fmTELA.submit();
@@ -5800,7 +5836,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "0",
-        function() {
+        function () {
           if (10 < WebSAGE.g_seltela.length) {
             WebSAGE.g_seltela.selectedIndex = 10;
             document.fmTELA.submit();
@@ -5815,49 +5851,49 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "", // esconde/mostra barra de comandos, com numlock (numpad *)
-        function() {
+        function () {
           WebSAGE.hideShowBar();
         },
         { type: "keydown", propagate: false, target: document, keycode: 106 }
       );
       shortcut.add(
         "F10", // esconde/mostra barra de comandos, com numlock (F10)
-        function() {
+        function () {
           WebSAGE.hideShowBar();
         },
         { type: "keydown", propagate: false, target: document }
       );
       shortcut.add(
         "shift+right", // mostra item selecionado
-        function() {
+        function () {
           WebSAGE.mostraDestaqSel(1, 0);
         },
         { type: "keydown", propagate: false, target: document }
       );
       shortcut.add(
         "shift+left", // mostra item selecionado
-        function() {
+        function () {
           WebSAGE.mostraDestaqSel(-1, 0);
         },
         { type: "keydown", propagate: false, target: document }
       );
       shortcut.add(
         "control+right", // mostra item selecionado
-        function() {
+        function () {
           WebSAGE.mostraDestaqSel(1, 1);
         },
         { type: "keydown", propagate: false, target: document }
       );
       shortcut.add(
         "control+left", // mostra item selecionado
-        function() {
+        function () {
           WebSAGE.mostraDestaqSel(-1, 1);
         },
         { type: "keydown", propagate: false, target: document }
       );
       shortcut.add(
         "enter", // mostra item selecionado
-        function() {
+        function () {
           if (WebSAGE.g_indSelPonto < 0) return;
           var obj = SVGDoc.getElementById(
             "DESTAQ" + WebSAGE.g_destaqList[WebSAGE.g_indSelPonto]
@@ -5872,14 +5908,14 @@ getHistoricalData: function (i, pnt, timeBegin) {
       );
       shortcut.add(
         "shift+backspace", // mostra pontos relacionados
-        function() {
+        function () {
           WebSAGE.mostraescRelac();
         },
         { type: "keydown", propagate: false, target: document }
       );
       shortcut.add(
         "esc",
-        function() {
+        function () {
           // sai da máquina do tempo, retornando ao tempo real
           clearTimeout(WebSAGE.g_toutID);
           document.fmTELA.style.display = "";
@@ -5900,63 +5936,63 @@ getHistoricalData: function (i, pnt, timeBegin) {
     // teclas de atalho para zoom/pan
     shortcut.add(
       "", // + : zoom in
-      function() {
+      function () {
         WebSAGE.zoomPan(0);
       },
       { type: "keydown", propagate: false, target: document, keycode: 107 }
     );
     shortcut.add(
       "", // numpad9 : zoom in
-      function() {
+      function () {
         WebSAGE.zoomPan(0);
       },
       { type: "keydown", propagate: false, target: document, keycode: 105 }
     );
     shortcut.add(
       "", // - : zoom out
-      function() {
+      function () {
         WebSAGE.zoomPan(6);
       },
       { type: "keydown", propagate: false, target: document, keycode: 109 }
     );
     shortcut.add(
       "", // numpad3 : zoom out
-      function() {
+      function () {
         WebSAGE.zoomPan(6);
       },
       { type: "keydown", propagate: false, target: document, keycode: 99 }
     );
     shortcut.add(
       "up", // sobe sem numlock
-      function() {
+      function () {
         WebSAGE.zoomPan(1);
       },
       { type: "keydown", propagate: false, target: document }
     );
     shortcut.add(
       "", // sobe com numlock
-      function() {
+      function () {
         WebSAGE.zoomPan(1);
       },
       { type: "keydown", propagate: false, target: document, keycode: 104 }
     );
     shortcut.add(
       "down", // desce sem numlock
-      function() {
+      function () {
         WebSAGE.zoomPan(7);
       },
       { type: "keydown", propagate: false, target: document }
     );
     shortcut.add(
       "", // desce com numlock
-      function() {
+      function () {
         WebSAGE.zoomPan(7);
       },
       { type: "keydown", propagate: false, target: document, keycode: 98 }
     );
     shortcut.add(
       "left", // esquerda sem numlock
-      function() {
+      function () {
         WebSAGE.zoomPan(3);
       },
       {
@@ -5968,14 +6004,14 @@ getHistoricalData: function (i, pnt, timeBegin) {
     );
     shortcut.add(
       "", // esquerda com numlock
-      function() {
+      function () {
         WebSAGE.zoomPan(3);
       },
       { type: "keydown", propagate: false, target: document, keycode: 100 }
     );
     shortcut.add(
       "right", // direita sem numlock
-      function() {
+      function () {
         WebSAGE.zoomPan(5);
       },
       {
@@ -5987,35 +6023,35 @@ getHistoricalData: function (i, pnt, timeBegin) {
     );
     shortcut.add(
       "", // direita com numlock
-      function() {
+      function () {
         WebSAGE.zoomPan(5);
       },
       { type: "keydown", propagate: false, target: document, keycode: 102 }
     );
     shortcut.add(
       "", // centraliza, sem zoom, com numlock (numpad5)
-      function() {
+      function () {
         WebSAGE.zoomPan(4);
       },
       { type: "keydown", propagate: false, target: document, keycode: 101 }
     );
     shortcut.add(
       "home", // centraliza, sem zoom, (home)
-      function() {
+      function () {
         WebSAGE.zoomPan(4);
       },
       { type: "keydown", propagate: false, target: document }
     );
     shortcut.add(
       "", // centraliza, sem zoom, com numlock (numpad7)
-      function() {
+      function () {
         WebSAGE.zoomPan(4);
       },
       { type: "keydown", propagate: false, target: document, keycode: 103 }
     );
     shortcut.add(
       "shift+enter", // make a snapshot that can be saved as svg
-      function() {
+      function () {
         var serializer = new XMLSerializer();
         var svg_blob = new Blob([serializer.serializeToString(SVGDoc)], {
           type: "image/svg+xml"
@@ -6050,7 +6086,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
     }
 
     // desabilita o botão direito
-    document.oncontextmenu = function() {
+    document.oncontextmenu = function () {
       return false;
     };
 
@@ -6061,7 +6097,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
 
     if (typeof SVGDoc != "undefined")
       if (SVGDoc != null) {
-        SVGDoc.oncontextmenu = function() {
+        SVGDoc.oncontextmenu = function () {
           return false;
         };
       }
@@ -6135,7 +6171,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
     // Mouse wheel event to zoom in/out graphics
     SVGDoc.addEventListener(
       "wheel",
-      function(event) {
+      function (event) {
         if (event.wheelDelta > 0 || event.detail < 0 || event.deltaY < 0) {
           // zoom out
           WebSAGE.zoomPan(8);
@@ -6148,7 +6184,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
     );
 
     // arraste do mouse para mover a tela
-    $(SVGDoc).bind("mousedown", function(event) {
+    $(SVGDoc).bind("mousedown", function (event) {
       if (
         !event.originalEvent.isTrusted &&
         event.clientX === 80 &&
@@ -6160,7 +6196,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
       window.MOUSEY = event.clientY;
       window.SVGDoc.style.cursor = "move";
     });
-    $(SVGDoc).bind("mouseup", function(event) {
+    $(SVGDoc).bind("mouseup", function (event) {
       if (
         !event.originalEvent.isTrusted &&
         event.clientX === 80 &&
@@ -6183,7 +6219,7 @@ getHistoricalData: function (i, pnt, timeBegin) {
         window.drgObject = null;
       }
     });
-   
+
     WebSAGE.pinnedAnnotations();
   } // init
 }; // WebSAGE

@@ -1,0 +1,178 @@
+version: '2.1'
+
+services:
+
+  dotnet_compile:
+    image: mcr.microsoft.com/dotnet/sdk:6.0
+    container_name: js_dotnet_compile
+    command: sh -c "cd /src/lib60870.netcore/lib60870.netcore/ && 
+                    dotnet build --self-contained --runtime linux-x64 -c Release -o /publish_bin/lib60870/ &&
+                    cd /src/lib60870.netcore/iec101client/ &&
+                    dotnet publish --self-contained --runtime linux-x64 -p:PublishReadyToRun=true -c Release -o /publish_bin/lib60870/iec101client/ &&
+                    cd /src/lib60870.netcore/iec101server/ &&
+                    dotnet publish --self-contained --runtime linux-x64 -p:PublishReadyToRun=true -c Release -o /publish_bin/lib60870/iec101server/ &&
+                    cd /src/lib60870.netcore/iec104client/ &&
+                    dotnet publish --self-contained --runtime linux-x64 -p:PublishReadyToRun=true -c Release -o /publish_bin/lib60870/iec104client/ &&
+                    cd /src/lib60870.netcore/iec104server/ &&
+                    dotnet publish --self-contained --runtime linux-x64 -p:PublishReadyToRun=true -c Release -o /publish_bin/lib60870/iec104server/ &&
+                    cd /src/OPC-UA-Client/ && 
+                    dotnet publish --self-contained --runtime linux-x64 -p:PublishReadyToRun=true -c Release -o /publish_bin/OPC-UA-Client/ &&
+                    cd /src/libplctag/libplctag.NET/src/libplctag &&
+                    dotnet build --self-contained --runtime linux-x64 -c Release -o /publish_bin/libplctag/ &&
+                    cd /src/libplctag/PLCTagsClient &&
+                    dotnet publish --self-contained --runtime linux-x64 -p:PublishReadyToRun=true -c Release -o /publish_bin/libplctag/"
+                    
+
+    # NOTICE Dnp3Client is Windows-only, so it can only run in docker/linux using Wine.
+    #               cd /src/dnp3/Dnp3Client/ && 
+    #               dotnet publish --self-contained --runtime win-x64 -p:PublishReadyToRun=false -c Release -o /publish_bin_win/ Dnp3Client.csproj &&
+    #               cp Dependencies/OpenSSL/*.dll /publish_bin_win/"
+
+    environment:
+      - DOTNET_CLI_TELEMETRY_OPTOUT=1
+    #command: tail -f /dev/null
+    volumes:
+      - ../src/lib60870.netcore:/src/lib60870.netcore
+      - ../src/OPC-UA-Client:/src/OPC-UA-Client
+      - ../src/libplctag:/src/libplctag
+      - ../bin:/publish_bin
+      - ../src/dnp3:/src/dnp3
+      - ../bin/bin_win:/publish_bin_win
+
+  calculations_compile:
+    image: golang:alpine3.13
+    container_name: js_calculations_compile
+    command: sh -c "apk update &&
+                    apk add --no-cache git && 
+                    go env -w GO111MODULE=auto &&
+                    cd /go/src/calculations/ && 
+                    go get ./... && 
+                    go build && 
+                    mv calculations /publish_bin"
+    volumes:
+      - ../src/calculations:/go/src/calculations
+      - ../bin:/publish_bin
+
+  i104m_compile:
+    image: golang:alpine3.13
+    container_name: js_i104m_compile
+    command: sh -c "apk update &&
+                    apk add --no-cache git && 
+                    go env -w GO111MODULE=auto &&
+                    cd /go/src/i104m/ &&
+                    go get ./... && 
+                    go build && 
+                    mv i104m /publish_bin/"
+    volumes:
+      - ../src/i104m:/go/src/i104m
+      - ../bin:/publish_bin
+
+  cs_data_processor_update:
+    image: node:lts-alpine3.16
+    container_name: js_cs_data_processor_update
+    command:  sh -c "npm install -g npm && cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+    volumes:
+      - ../src/cs_data_processor:/srcdir
+      - ../bin:/bindir
+
+  cs_custom_processor_update:
+    image: node:lts-alpine3.16
+    container_name: js_cs_custom_processor_update
+    command:  sh -c "npm install -g npm && cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+    volumes:
+      - ../src/cs_custom_processor:/srcdir
+      - ../bin:/bindir
+
+  #server_realtime_update:
+  #  image: node:lts-alpine3.16
+  #  container_name: js_server_realtime_update
+  #  command:  sh -c "cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+  #  volumes:
+  #    - ../src/server_realtime:/srcdir
+  #    - ../bin:/bindir
+
+  server_realtime_auth_update:
+    image: node:lts-alpine3.16
+    container_name: js_server_realtime_auth_update
+    command:  sh -c "npm install -g npm && cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+    volumes:
+      - ../src/server_realtime_auth:/srcdir
+      - ../bin:/bindir
+
+  config_server_excel_update:
+    image: node:lts-alpine3.16
+    container_name: js_config_server_update
+    command:  sh -c "npm install -g npm && cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+    volumes:
+      - ../src/config_server_for_excel:/srcdir
+      - ../bin:/bindir
+
+  htdocs_admin_update:
+    image: node:17
+    container_name: js_htdocs_admin_update
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider
+    command:  sh -c "npm install -g npm && 
+                     npm cache clear --force &&
+                     npm install -g @vue/cli-plugin-babel &&
+                     npm install -g @vue/cli-plugin-eslint &&
+                     npm install -g @vue/cli-plugin-router &&
+                     npm install -g @vue/cli-service &&
+                     npm install -g babel-eslint &&
+                     npm install -g eslint &&
+                     npm install -g eslint-plugin-vue &&
+                     npm install -g sass &&
+                     npm install -g sass-loader &&
+                     npm install -g vue-cli-plugin-vuetify &&
+                     npm install -g vue-template-compiler &&
+                     npm install -g vuetify-loader &&
+                     cd /srcdir &&
+                     cp package-lock.json /bindir/lib/node_modules/admin-manager/
+                     npm audit fix --force &&
+                     npm cache clear --force &&
+                     npm install --location=global --install-links=true --prefix=/bindir &&
+                     cd /bindir/lib/node_modules/admin-manager &&
+                     npm run build"
+    volumes:
+      - ../src/htdocs-admin:/srcdir
+      - ../bin:/bindir
+
+  alarm_beep_update:
+    image: node:lts-alpine3.16
+    container_name: js_alarm_beep_update
+    command:  sh -c "npm install -g npm && cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+    volumes:
+      - ../src/alarm_beep:/srcdir
+      - ../bin:/bindir
+
+  oshmi2json_update:
+    image: node:lts-alpine3.16
+    container_name: js_oshmi2json_update
+    command:  sh -c "npm install -g npm && cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+    volumes:
+      - ../src/oshmi2json:/srcdir
+      - ../bin:/bindir
+
+  telegraf_listener_update:
+    image: node:lts-alpine3.16
+    container_name: js_telegraf_listener_update
+    command:  sh -c "npm install -g npm && cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+    volumes:
+      - ../src/telegraf-listener:/srcdir
+      - ../bin:/bindir
+
+  opcua_server_update:
+    image: node:lts-alpine3.16
+    container_name: js_opcua_server_update
+    command: sh -c "npm install -g npm && cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+    volumes:
+      - ../src/OPC-UA-Server:/srcdir
+      - ../bin:/bindir
+
+  mqtt_sparkplug_update:
+    image: node:lts-alpine3.16
+    container_name: js_mqtt_sparkplug_update
+    command:  sh -c "npm install -g npm && cd /srcdir && npm install --location=global --install-links=true --prefix=/bindir"
+    volumes:
+      - ../src/mqtt-sparkplug:/srcdir
+      - ../bin:/bindir

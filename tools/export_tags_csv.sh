@@ -1,0 +1,1 @@
+mongoexport --db=json_scada --collection=realtimeData --type=csv --fieldFile=tag_import_fields.txt --query='{ "_id": {"$gt": 0} }' --out=tags.csv
